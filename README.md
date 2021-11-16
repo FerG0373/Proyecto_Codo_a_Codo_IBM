@@ -1,8 +1,10 @@
-# Proyecto_Codo_a_Codo_IBM
+# Proyecto Codo a Codo IBM
+## Aplicacion del Clima
 Curso de desarrollo mobile
 
 ## Persona Canva
-[https://drive.google.com/file/d/1FWyDq99-7YWQISvN4Hmheo3fLAkNyQEi/view?usp=sharing]
+_La siguiente imagen contiene la Persona Canva que diseñamos para la realizacion de la aplicacion_
+![Persona Canva de Paula](https://github.com/FerG0373/Proyecto_Codo_a_Codo_IBM/blob/main/assets/img/readme/pesonaCanvaPaula.png)
 ## Paper Prototyping
 
 --------------------------------------
