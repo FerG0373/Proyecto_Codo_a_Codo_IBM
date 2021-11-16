@@ -1,112 +1,104 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
+import { StatusBar } from 'expo-status-bar';
+import React, { useState, useEffect } from 'react';
+import { StyleSheet, Text, View, TouchableWithoutFeedback, Keyboard, Alert } from 'react-native';
 
-import React from 'react';
-import type {Node} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
+import Formulario from './components/Formulario';
+import Clima from './components/Clima';
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+export default function App() {
 
-const Section = ({children, title}): Node => {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
-};
+  const [busqueda, guardarBusqueda] = useState({
+    ciudad: "La Plata",
+  });
 
-const App: () => Node = () => {
-  const isDarkMode = useColorScheme() === 'dark';
+  //destructuring
+  const {ciudad} = busqueda;
 
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
+  const [consultar, guardarConsultar] = useState(false);
+  const [resultado, guardarResultado] = useState({});
+  const [bgcolor, guardarBgcolor] = useState("rgb(71, 149, 212)")
+
+  /* se encarga de realizar la consulta a la API de OpenWeather y cambia el color segun un rango de clima */
+  useEffect(() => {
+    const consultarClima = async () => {
+      if(consultar){
+        const appID = "98c952d01df3371d7181edcf959ae344";
+        const url = `http://api.openweathermap.org/data/2.5/weather?q=${ciudad},AR&appid=${appID}`;
+        console.log("Por consultar");
+        try {
+          const respuesta = await fetch(url);
+          const resultado = await respuesta.json();
+          console.log(resultado);
+          guardarResultado(resultado);
+          guardarConsultar(false);
+
+          //modificar los colores de fondo segun la temperatura
+          const kelvin = 273.15;
+          const {main} = resultado;
+          const actual = main.temp - kelvin;
+
+          if(actual<10){
+            guardarBgcolor("rgb(105, 108, 149)");
+          }else if(actual >= 10 && actual < 25){
+            guardarBgcolor("rgb(71, 149, 212)");
+          } else{
+            guardarBgcolor("rgb(178, 28, 61)");
+          }
+
+        } catch (error) {
+          mostrarAlerta();
+        }
+      }
+    };
+
+    consultarClima();
+    
+  }, [consultar]);
+
+  const mostrarAlerta = () => {
+    Alert.alert(
+        "Error",
+        "No hay resultados, intenta con otra ciudad o pais",
+        [{ text: "OK"}]
+    )
+  };
+
+  const ocultarTeclado = () => {
+    Keyboard.dismiss();
+  };
+
+  const bgColorApp = {
+    backgroundColor: bgcolor,
   };
 
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.js</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
+    <>
+      <TouchableWithoutFeedback onPress={ () => ocultarTeclado() }>
+        <View style={[styles.app, bgColorApp]}>
+          <View style={styles.contenido}>
+            <Clima
+              resultado={resultado}
+            />
+            <Formulario
+              busqueda={busqueda}
+              guardarBusqueda={guardarBusqueda}
+              guardarConsultar={guardarConsultar}
+            />
+          </View>
         </View>
-      </ScrollView>
-    </SafeAreaView>
+      </TouchableWithoutFeedback>
+    </>
+    
   );
-};
+}
 
 const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
+  app:{
+    flex: 1,
+    justifyContent: 'center',
   },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
+  contenido: {
+    marginHorizontal: "2.5%",
+   
   },
 });
-
-export default App;
