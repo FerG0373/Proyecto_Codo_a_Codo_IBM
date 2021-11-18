@@ -7,6 +7,11 @@ _La siguiente imagen contiene la Persona Canva que diseñamos para la realizacio
 ![Persona Canva de Paula](https://github.com/FerG0373/Proyecto_Codo_a_Codo_IBM/blob/main/assets/img/readme/pesonaCanvaPaula.png)
 ## Paper Prototyping
 
+_7.2. Elabora un documento README en el repositorio que explique claramente los pasos necesarios para ejecutar el proyecto en otro equipo (librerías necesarias, comandos para
+ejecutar)._
+
+_7.3. Añade al README tu Paper prototyping y el Persona Canvas (imágen o video)._
+
 --------------------------------------
 # Plantilla que saque
 
