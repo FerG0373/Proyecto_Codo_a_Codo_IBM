@@ -2,20 +2,45 @@
 ## Aplicacion del Clima
 Curso de desarrollo mobile
 
-## Persona Canva
+## Persona Canva 📌
 _La siguiente imagen contiene la Persona Canva que diseñamos para la realizacion de la aplicacion_
 ![Persona Canva de Paula](https://github.com/FerG0373/Proyecto_Codo_a_Codo_IBM/blob/main/assets/img/readme/personaCanvaPaula.png)
-## Paper Prototyping
+
+## Paper Prototyping 📋
 
 ![PP de Inicio](https://github.com/FerG0373/Proyecto_Codo_a_Codo_IBM/blob/main/assets/img/readme/inicio.png)
 ![PP de Mis Ciudades](https://github.com/FerG0373/Proyecto_Codo_a_Codo_IBM/blob/main/assets/img/readme/misCiudades.png)
 ![PP de Clima](https://github.com/FerG0373/Proyecto_Codo_a_Codo_IBM/blob/main/assets/img/readme/Clima.png)
 ![PP de Quienes Somos](https://github.com/FerG0373/Proyecto_Codo_a_Codo_IBM/blob/main/assets/img/readme/quienesSomos.png)
+
 _7.2. Elabora un documento README en el repositorio que explique claramente los pasos necesarios para ejecutar el proyecto en otro equipo (librerías necesarias, comandos para
 ejecutar)._
 
-_7.3. Añade al README tu Paper prototyping y el Persona Canvas (imágen o video)._
+## Pasos para ejecutar el proyecto ⚙️
 
+_Librerias necesarias para la ejecucion de el proyecto_
+
+* [React Navigation](https://reactnavigation.org/docs/getting-started/) - El framework para realizar la navegacion de la aplicacion
+
+Comando para instalar el componente:
+```
+yarn add @react-navigation/native
+```
+Tambien se necesitara instalar:
+```
+yarn add react-native-screens react-native-safe-area-context
+```
+
+* [Native Stack Navigator](https://reactnavigation.org/docs/hello-react-navigation/) - Libreria que es parte de React Navigation y sirve para la creacion de pilas de vistas dentro de la navegacion
+
+Comando para instalar el componente:
+```
+yarn add @react-navigation/native-stack
+```
+Tambien se necesitara instalar:
+```
+yarn add @react-navigation/bottom-tabs
+```
 --------------------------------------
 # Plantilla que saque
 
