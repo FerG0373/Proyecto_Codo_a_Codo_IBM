@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { View, Text, StyleSheet, Image } from "react-native";
 
 export default function Clima ({resultado}) {
@@ -37,8 +37,45 @@ export default function Clima ({resultado}) {
             nombreClimaActual="sin descripcion";
         }
         return nombreClimaActual;
-    }
+    };
 
+    const imagenClima = () => {
+        let imagenClimaActual;
+        const icon = resultado.weather[0].icon;
+
+        if(icon === "01d"){
+            imagenClimaActual = require("../assets/img/clima/sun.png");
+        }else if(icon === "01n"){
+            imagenClimaActual= require("../assets/img/clima/moon.png");
+        }else if(icon === "02d"){
+            imagenClimaActual=require("../assets/img/clima/cloud-sun.png");
+        }else if(icon === "02n"){
+            imagenClimaActual=require("../assets/img/clima/cloud.png");
+        }else if(icon === "03d" || icon === "03n"){
+            imagenClimaActual=require("../assets/img/clima/cloud.png");
+        }
+        else if(icon === "04n" || icon === "04d"){
+            imagenClimaActual=require("../assets/img/clima/cloud.png");
+        }else if(icon === "09n" || icon === "09d"){
+            imagenClimaActual=require("../assets/img/clima/rain-alt.png");
+        }else if(icon === "10d"){
+            imagenClimaActual=require("../assets/img/clima/rain-alt-sun.png");
+        }else if(icon === "10n"){
+            imagenClimaActual=require("../assets/img/clima/rain-alt-moon.png");
+        }else if(icon === "11n" || icon === "11d"){
+            imagenClimaActual=require("../assets/img/clima/light.png");
+        }
+        else if(icon === "13n" || icon === "13d"){
+            imagenClimaActual=require("../assets/img/clima/snow-alt.png");
+        }
+        else if(icon === "50n" || icon === "50d"){
+            imagenClimaActual=require("../assets/img/clima/fog.png");
+        }else{
+            imagenClimaActual="sin descripcion";
+        }
+        console.log(imagenClimaActual);
+        return imagenClimaActual;
+    };
 
     /* En el return se renderiza toda la vista de los datos del clima */
     return (
@@ -47,14 +84,16 @@ export default function Clima ({resultado}) {
             <Text style={styles.texto}>Ciudad de { name }</Text>
 
             <Text style={[styles.texto, styles.actual]}>
-                {parseInt(main.temp - kelvin) }
+                {(main.temp - kelvin).toFixed(1) }
                 <Text style={styles.temperatura}>
                     &#x2103;
                 </Text>
+        
                 <Image
-                    style={{ width:66, height:58 }}
-                    source={{uri: `http://openweathermap.org/img/w/${resultado.weather[0].icon}.png`}}
+                    style={{tintColor:"#FFF"}}
+                    source={imagenClima()}
                 />
+                
             </Text>
 
             <View style={styles.temperaturas}>
@@ -65,14 +104,14 @@ export default function Clima ({resultado}) {
 
                 <Text style={styles.texto}>
                     <Text style={styles.temperatura}>
-                       Max { parseInt(main.temp_max - kelvin) } &#x2103; / 
-                       Min { parseInt(main.temp_min - kelvin) } &#x2103;
+                        Min { (main.temp_min - kelvin).toFixed(1) } &#x2103; /
+                       Max { (main.temp_max - kelvin).toFixed(1) } &#x2103;
                     </Text>
                 </Text>
 
                 <Text style={styles.texto}>S. Termica {" "}
                     <Text style={styles.temperatura}>
-                        { parseInt(main.feels_like - kelvin) } &#x2103;
+                        { (main.feels_like - kelvin).toFixed(1) } &#x2103;
                     </Text>
                 </Text>
 
