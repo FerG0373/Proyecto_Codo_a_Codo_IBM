@@ -4,9 +4,13 @@ Curso de desarrollo mobile
 
 ## Persona Canva
 _La siguiente imagen contiene la Persona Canva que diseñamos para la realizacion de la aplicacion_
-![Persona Canva de Paula](https://github.com/FerG0373/Proyecto_Codo_a_Codo_IBM/blob/main/assets/img/readme/pesonaCanvaPaula.png)
+![Persona Canva de Paula](https://github.com/FerG0373/Proyecto_Codo_a_Codo_IBM/blob/main/assets/img/readme/personaCanvaPaula.png)
 ## Paper Prototyping
 
+![PP de Inicio](https://github.com/FerG0373/Proyecto_Codo_a_Codo_IBM/blob/main/assets/img/readme/inicio.png)
+![PP de Mis Ciudades](https://github.com/FerG0373/Proyecto_Codo_a_Codo_IBM/blob/main/assets/img/readme/misCiudades.png)
+![PP de Clima](https://github.com/FerG0373/Proyecto_Codo_a_Codo_IBM/blob/main/assets/img/readme/Clima.png)
+![PP de Quienes Somos](https://github.com/FerG0373/Proyecto_Codo_a_Codo_IBM/blob/main/assets/img/readme/quienesSomos.png)
 _7.2. Elabora un documento README en el repositorio que explique claramente los pasos necesarios para ejecutar el proyecto en otro equipo (librerías necesarias, comandos para
 ejecutar)._
 
