@@ -1,13 +1,15 @@
 import React, {useEffect} from "react";
-import { View, Text, StyleSheet, Image } from "react-native";
+import { View, Text, StyleSheet, Image, Dimensions } from "react-native";
+import MapView, { Marker } from "react-native-maps";
 
 export default function Clima ({resultado}) {
 
-    const {name, main} = resultado;
+    const {name, main, coord} = resultado;
 
     if (!name) return null;
     //grados Kelvin para centigrados
     const kelvin = 273.15;
+
 
     const nombreClima = () => {
         var nombreClimaActual="";
@@ -83,6 +85,22 @@ export default function Clima ({resultado}) {
 
             <Text style={styles.texto}>Ciudad de { name }</Text>
 
+            <MapView 
+                style={styles.map}
+                initialRegion={{
+                latitude: coord.lat,
+                longitude: coord.lon,
+                latitudeDelta: 0.0922,
+                longitudeDelta: 0.0421,
+                }}
+            >
+                <Marker
+                    coordinate={{ latitude : coord.lat , longitude : coord.lon }}
+                    title={ name }
+                    description={ (main.temp - kelvin).toFixed(1) }
+                />
+              
+            </MapView>
             <Text style={[styles.texto, styles.actual]}>
                 {(main.temp - kelvin).toFixed(1) }
                 <Text style={styles.temperatura}>
@@ -129,6 +147,7 @@ export default function Clima ({resultado}) {
 const styles = StyleSheet.create({
     clima:{
         marginBottom: 20,
+        alignItems:"center",
     },
     texto:{
         color:"#FFF",
@@ -149,5 +168,9 @@ const styles = StyleSheet.create({
         /*flexDirection: "row",
         justifyContent: "center",*/
         textAlign: "center",
+    },
+    map:{
+        width:Dimensions.get('window').width - 60,
+        height:300,
     },
 });

@@ -1,4 +1,3 @@
-import { StatusBar } from 'expo-status-bar';
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, TouchableWithoutFeedback, Keyboard, Alert } from 'react-native';
 
@@ -23,7 +22,7 @@ export default function App() {
     const consultarClima = async () => {
       if(consultar){
         const appID = "98c952d01df3371d7181edcf959ae344";
-        const url = `http://api.openweathermap.org/data/2.5/weather?q=${ciudad},AR&appid=${appID}`;
+        const url = `http://api.openweathermap.org/data/2.5/weather?q=${ciudad},AR&appid=${appID}&lang=es`;
         console.log("Por consultar");
         try {
           const respuesta = await fetch(url);
@@ -84,6 +83,7 @@ export default function App() {
               guardarBusqueda={guardarBusqueda}
               guardarConsultar={guardarConsultar}
             />
+
           </View>
         </View>
       </TouchableWithoutFeedback>
