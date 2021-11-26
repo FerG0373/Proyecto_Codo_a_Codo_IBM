@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, StyleSheet, View, Button, Dimensions } from 'react-native';
 import globalStyles from '../styles/globalStyles';
-
+import Gradiente from '../components/Gradiente';
 
 const Inicio = ({navigation}) => {
     
@@ -15,6 +15,9 @@ const Inicio = ({navigation}) => {
 
     return (  
         <>    
+            <Gradiente
+                colorGradiente={['#97A7B7', '#B98A90', '#745B83']}
+            />
             <View style={styles.contenedor}>
                 <Text style={styles.nombreAplicacion}>App Clima</Text>
                 <Text style={[globalStyles.titulo]}>Descripcion</Text>

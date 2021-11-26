@@ -3,6 +3,7 @@ import { Text, StyleSheet, View, Button, TouchableHighlight } from 'react-native
 import { Avatar } from 'react-native-elements';
 
 import globalStyles from '../styles/globalStyles';
+import Gradiente from '../components/Gradiente';
 
 const Nosotros = ( {navigation, route} ) => {
       
@@ -12,7 +13,9 @@ const Nosotros = ( {navigation, route} ) => {
 
     return (  
         <>
-            
+            <Gradiente
+                colorGradiente={['#97A7B7', '#B98A90', '#745B83']}
+            />
             <View style={styles.contenedor}>
                 <Text style={globalStyles.titulo}>Solucion</Text>
                 <Text style={globalStyles.parrafo}>Aca va la solucion que implementamos en la aplicacion</Text>
