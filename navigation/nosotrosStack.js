@@ -4,7 +4,7 @@ import Nosotros from "../views/Nosotros";
 
 const Stack = createNativeStackNavigator();
 
-const inicioStack = () => {
+const NosotrosStack = () => {
     return(
         <Stack.Navigator
             screenOptions={{
@@ -27,4 +27,4 @@ const inicioStack = () => {
     );
 };
 
-export default inicioStack;
+export default NosotrosStack;

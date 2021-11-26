@@ -34,7 +34,7 @@ const TabComponent = () => {
   ]);
   const layout = useWindowDimensions();
 
-  const renderLazyPlaceholder = ({route}) => <LazyPlaceholder route={route} />;
+  const renderLazyPlaceholder = (route) => <LazyPlaceholder route={route} />;
   return (
     <>
       <Text>Hola</Text>
@@ -42,7 +42,7 @@ const TabComponent = () => {
         navigationState={{index, routes}}
         renderScene={renderScene}
         onIndexChange={setIndex}
-        renderLazyPlaceholder={() => renderLazyPlaceholder()}
+        renderLazyPlaceholder={({route}) => renderLazyPlaceholder(route)}
         initialLayout={{width: layout.width}}
       />
     </>

@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import { View, Text, StyleSheet, Image, Dimensions } from "react-native";
-import MapView, { Marker } from "react-native-maps";
+import MapView, { PROVIDER_GOOGLE, Marker } from "react-native-maps";
 
 export default function Clima ({route, navigation}) {
     
@@ -110,6 +110,7 @@ export default function Clima ({route, navigation}) {
 
             <MapView 
                 style={styles.map}
+                provider={PROVIDER_GOOGLE}
                 initialRegion={{
                 latitude: coord.lat,
                 longitude: coord.lon,
