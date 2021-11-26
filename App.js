@@ -1,16 +1,16 @@
+/* eslint-disable prettier/prettier */
 import React from 'react';
-import { View, Text } from 'react-native';
-
+import { CitiesContextProvider } from './context/ciudadesContext';
 import Navigation from './navigation/Navigation';
 
 const App = () => {
   return (
     <>
-      <Navigation />
-      
+      <CitiesContextProvider>
+        <Navigation />
+      </CitiesContextProvider>
     </>
   );
 };
-
 
 export default App;

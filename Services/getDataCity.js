@@ -1,8 +1,8 @@
 /* eslint-disable prettier/prettier */
+import {CITY_URL} from '../Settings/constants';
+
 export const getAllState = value => {
-  return fetch(
-    `https://apis.datos.gob.ar/georef/api/municipios?provincia=${value}&max=100`,
-  )
+  return fetch(`${CITY_URL}/municipios?provincia=${value}&max=100`)
     .then(response => response.json())
     .then(data => {
       const {municipios} = data;

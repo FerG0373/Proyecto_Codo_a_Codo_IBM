@@ -1,7 +1,9 @@
 /* eslint-disable prettier/prettier */
+import { CITY_URL } from '../Settings/constants'
+
 export const getAllState = () => {
   return fetch(
-    'https://apis.datos.gob.ar/georef/api/provincias?campos=id,nombre',
+    `${CITY_URL}/provincias?campos=id,nombre`
   )
     .then(response => response.json())
     .then(data => {

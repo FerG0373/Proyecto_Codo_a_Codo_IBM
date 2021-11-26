@@ -8,11 +8,9 @@ import {
   Text,
   Modal,
   Button,
-  
 } from 'react-native';
 import * as getDataState from '../Services/getDataState';
 import FormCiudades from '../components/FormCiudades';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import TabComponent from '../components/TabComponent';
 
 const Ciudades = ({navigation, route}) => {
@@ -21,7 +19,6 @@ const Ciudades = ({navigation, route}) => {
   };
   const [formModal, setFormModal] = useState(false);
   const [provincias, setProvincias] = useState([]);
-  const [listOfCitys, setListOfCitys] = useState([]);
 
   const handleSearch = () => {};
 
@@ -34,22 +31,8 @@ const Ciudades = ({navigation, route}) => {
       .catch(err => console.log(err));
   };
 
-  const getData = async () => {
-    try {
-      const valueStage = await AsyncStorage.getItem('ciudades');
-      if (valueStage) {
-        console.log(valueStage);
-
-        setListOfCitys(JSON.parse(valueStage));
-      }
-    } catch (e) {
-      console.log(e);
-    }
-  };
-
   useEffect(() => {
     getState();
-    getData();
   }, []);
 
   return (
@@ -78,14 +61,10 @@ const Ciudades = ({navigation, route}) => {
             provincias={provincias}
             setFormModal={setFormModal}
             formModal={formModal}
-            setListOfCitys={setListOfCitys}
-            listOfCitys={listOfCitys}
           />
         </Modal>
       </View>
-      <View>
-        <TabComponent />
-      </View>
+      <TabComponent />
       <Button
         title="ir a formulario"
         onPress={() => navigation.navigate('Formulario')}

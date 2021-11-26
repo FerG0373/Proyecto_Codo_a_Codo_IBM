@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import React, {useEffect, useState} from 'react';
+import React, { useState} from 'react';
 import {
   Pressable,
   StyleSheet,
@@ -10,12 +10,15 @@ import {
 import {Picker} from '@react-native-picker/picker';
 import {getAllState} from '../Services/getDataCity';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useCities } from '../Hook/useCities';
 
-const FormCiudades = ({provincias, setFormModal, formModal, setListOfCitys, listOfCitys}) => {
+const FormCiudades = ({provincias, setFormModal, formModal}) => {
   const [provSelected, setProvSelected] = useState(null);
   const [citys, setcitys] = useState([]);
   const [error, setError] = useState(null);
   const [citySelected, setCitySelected] = useState(null);
+  const {listOfCitys, setListOfCitys} = useCities();
+
 
   const getDataCall = async () => {
     getAllState(provSelected)
@@ -40,6 +43,7 @@ const FormCiudades = ({provincias, setFormModal, formModal, setListOfCitys, list
   };
   const guardarCiudad = async () => {
     let data = {
+      id:'',
       nombre: '',
       latitud: '',
       longitud: '',
@@ -47,6 +51,7 @@ const FormCiudades = ({provincias, setFormModal, formModal, setListOfCitys, list
 
     citys.filter(city => {
       if (city.id === citySelected) {
+        data.id = city.id;
         data.nombre = city.nombre;
         data.latitud = city.centroide.lat;
         data.longitud = city.centroide.lon;
