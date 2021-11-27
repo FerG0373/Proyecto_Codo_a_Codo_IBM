@@ -68,9 +68,9 @@ const Ciudades = ({navigation, route}) => {
             />
           </Modal>
         </View>
-        <View>
-          <TabComponent />
-        </View>
+
+        <TabComponent />
+
         <Button
           title="ir a formulario"
           onPress={() => navigation.navigate('Formulario')}
