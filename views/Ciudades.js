@@ -13,6 +13,8 @@ import * as getDataState from '../Services/getDataState';
 import FormCiudades from '../components/FormCiudades';
 import TabComponent from '../components/TabComponent';
 
+import Gradiente from '../components/Gradiente';
+
 const Ciudades = ({navigation, route}) => {
   const volver = () => {
     navigation.navigate('Inicio');
@@ -36,41 +38,46 @@ const Ciudades = ({navigation, route}) => {
   }, []);
 
   return (
-    <View style={styles.contenedor}>
-      <View>
-        <TextInput
-          style={styles.search}
-          onChangeText={text => handleSearch(text)}
-        />
-      </View>
-      <View>
-        <TouchableHighlight
-          style={styles.button}
-          onPress={() => setFormModal(true)}>
-          <Text style={styles.textBotton}>Añadir ciudad</Text>
-        </TouchableHighlight>
-        <Modal
-          animationType="slide"
-          transparent={true}
-          visible={formModal}
-          onRequestClose={() => {
-            //   Alert.alert('Modal has been closed.');
-            setFormModal(!formModal);
-          }}>
-          <FormCiudades
-            provincias={provincias}
-            setFormModal={setFormModal}
-            formModal={formModal}
+    <>
+      <Gradiente colorGradiente={['#97A7B7', '#B98A90', '#745B83']} />
+      <View style={styles.contenedor}>
+        <View>
+          <TextInput
+            style={styles.search}
+            onChangeText={text => handleSearch(text)}
           />
-        </Modal>
+        </View>
+        <View>
+          <TouchableHighlight
+            style={styles.button}
+            onPress={() => setFormModal(true)}>
+            <Text style={styles.textBotton}>Añadir ciudad</Text>
+          </TouchableHighlight>
+          <Modal
+            animationType="slide"
+            transparent={true}
+            visible={formModal}
+            onRequestClose={() => {
+              //   Alert.alert('Modal has been closed.');
+              setFormModal(!formModal);
+            }}>
+            <FormCiudades
+              provincias={provincias}
+              setFormModal={setFormModal}
+              formModal={formModal}
+            />
+          </Modal>
+        </View>
+        <View>
+          <TabComponent />
+        </View>
+        <Button
+          title="ir a formulario"
+          onPress={() => navigation.navigate('Formulario')}
+        />
+        <Button title="Volver" onPress={() => volver()} />
       </View>
-      <TabComponent />
-      <Button
-        title="ir a formulario"
-        onPress={() => navigation.navigate('Formulario')}
-      />
-      <Button title="Volver" onPress={() => volver()} />
-    </View>
+    </>
   );
 };
 
