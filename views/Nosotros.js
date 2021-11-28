@@ -1,12 +1,12 @@
 import React from 'react';
-import { Text, StyleSheet, View, Button, TouchableHighlight } from 'react-native';
+import { Text, StyleSheet, View, Button, TouchableHighlight, ScrollView } from 'react-native';
 import { Avatar } from 'react-native-elements';
 
 import globalStyles from '../styles/globalStyles';
 import Gradiente from '../components/Gradiente';
 
 const Nosotros = ( {navigation, route} ) => {
-      
+
     const volver = () => {
         navigation.navigate('Inicio');
     };
@@ -22,30 +22,47 @@ const Nosotros = ( {navigation, route} ) => {
 
                 <Text style={globalStyles.titulo}>Quienes somos</Text>
                 <Text style={globalStyles.parrafo}>Aca va quienes somos</Text>
-                
-                   <View>
-                        <Avatar
-                            rounded
-                            title="VA"
-                        /> 
-                        <Text style={globalStyles.parrafo}>Vanina Eliana Armida </Text>
-                   </View>
-                   <View>
-                        <Avatar
-                            rounded
-                            title="FG"
-                        /> 
-                        <Text style={globalStyles.parrafo}>Fernando Daniel González</Text>
-                   </View>
-                   <View>
-                        <Avatar
-                            rounded
-                            title="MR"
-                        /> 
-                        <Text style={globalStyles.parrafo}>Matias Nicolas Rivero</Text> 
-                   </View>
-                
 
+                <View style={{height:150}}>
+                    <ScrollView horizontal>
+                        <View style={styles.nosotros}>
+                            <Avatar
+                                size="large"
+                                rounded
+                                title="VA"
+                                containerStyle={{backgroundColor:"red"}}
+                                //source={require("../assets/img/clima/cloud-moon.png")} 
+                            /> 
+                            <Text>Vanina</Text>
+                            <Text>Eliana</Text>
+                            <Text>Armida</Text>
+                    </View>
+                    <View style={styles.nosotros}>
+                            <Avatar
+                                size="large"
+                                rounded
+                                title="FG"
+                                containerStyle={{backgroundColor:"green"}}
+                            /> 
+                            <Text>Fernando</Text>
+                            <Text>Daniel</Text>
+                            <Text>González</Text>
+                    </View>
+                    <View style={styles.nosotros}>
+                            <Avatar
+                                size="large"
+                                rounded
+                                title="MR"
+                                containerStyle={{backgroundColor:"blue"}}
+                            /> 
+                            <Text>Matias</Text>
+                            <Text>Nicolas</Text>
+                            <Text>Rivero</Text> 
+                    </View>
+                    </ScrollView>
+                </View>
+                
+ 
                 <Text style={globalStyles.titulo}>Documentacion UX</Text>
                 <Text style={globalStyles.parrafo}>Aca va la documentacion UX</Text>     
                 
@@ -65,6 +82,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         //justifyContent: 'center',
         marginTop:30,
+        
     },
     btn:{
         backgroundColor:"#1f2366",
@@ -76,6 +94,11 @@ const styles = StyleSheet.create({
         color: "#FFF",
         fontWeight: "bold",
         textAlign: "center",
+    },
+    nosotros:{
+        marginHorizontal: 15,
+        alignItems:"center",
+        //height:140
     }
 });
  
