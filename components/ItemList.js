@@ -1,16 +1,23 @@
 /* eslint-disable prettier/prettier */
 import {useNavigation} from '@react-navigation/core';
 import React, {useEffect, useState} from 'react';
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {
+  Alert,
+  Pressable,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import {useCities} from '../Hook/useCities';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {OW_API_KEY} from '../Settings/constants';
+import {getWeatherForName} from '../Services/getDataWhater';
 
 const ItemList = ({title, id}) => {
   const [consultar, setConsultar] = useState(false);
   const [resultado, setResultado] = useState({});
   const [busqueda, setBusqueda] = useState({});
-  const {listOfCitys} = useCities();
+  const {listOfCitys, eliminarDelStorage} = useCities();
   const clearAll = async () => {
     try {
       await AsyncStorage.clear();
@@ -24,60 +31,55 @@ const ItemList = ({title, id}) => {
   const navigation = useNavigation();
 
   const handlePress = () => {
-    const dataCity = listOfCitys.filter(city => {
+    const dataCity = listOfCitys.find(city => {
       return city.id === id;
     });
+    console.log(dataCity);
     setBusqueda(dataCity);
     setConsultar(true);
+  };
+  const mostrarAlerta = () => {
+    Alert.alert('Error', 'No hay resultados, intenta con otra ciudad o pais', [
+      {text: 'OK'},
+    ]);
+  };
+  const handleDelete = () => {
+    clearAll();
+    eliminarDelStorage(id);
   };
 
   useEffect(() => {
     const consultarClima = async () => {
-      let lat;
-      let long;
       console.log(busqueda);
       if (consultar) {
-        busqueda.forEach(element => {
-          console.log(element);
-          lat = element.latitud.toFixed(4);
-          long = element.longitud.toFixed(4);
-        });
-        const url = `api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${OW_API_KEY}`;
-
-        console.log(url);
-        console.log('Por consultar');
         try {
-          const respuesta = await fetch(url);
-          console.log(respuesta);
-          const resultadoConsulta = await respuesta.json();
-          console.log(resultadoConsulta);
-          setResultado(resultadoConsulta);
+          const respuesta = await getWeatherForName(busqueda.nombre);
+
+          setResultado(respuesta);
           setConsultar(false);
 
-          navigation.navigate('Clima', {resultado});
+          navigation.navigate('Clima', {resultado: respuesta});
         } catch (error) {
           console.log(error);
-          //   mostrarAlerta();
+          mostrarAlerta();
         }
       }
     };
 
     consultarClima();
-  }, [
-    busqueda,
-    busqueda.latitud,
-    busqueda.longitud,
-    consultar,
-    navigation,
-    resultado,
-  ]);
+  }, [busqueda, consultar, navigation, resultado]);
   return (
     <>
-      <TouchableOpacity onPress={handlePress}>
-        <View style={styles.item} key={id}>
-          <Text style={styles.title}>{title}</Text>
-        </View>
-      </TouchableOpacity>
+      <View style={styles.itemContainer} key={id}>
+        <TouchableOpacity style={styles.item} onPress={handlePress}>
+          <View key={id}>
+            <Text style={styles.title}>{title}</Text>
+          </View>
+        </TouchableOpacity>
+        <Pressable style={styles.btn} onPress={handleDelete}>
+          <Text style={styles.btnText}>Eliminar</Text>
+        </Pressable>
+      </View>
     </>
   );
 };
@@ -85,9 +87,15 @@ const ItemList = ({title, id}) => {
 const styles = StyleSheet.create({
   item: {
     backgroundColor: '#7A8FBE',
-    padding: 20,
-    marginVertical: 8,
-    marginHorizontal: 26,
+    width: '70%',
+    height: 50,
+    marginVertical: 15,
+    marginHorizontal: 10,
+  },
+  itemContainer: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-around',
   },
   title: {
     color: '#ffff',
@@ -95,6 +103,19 @@ const styles = StyleSheet.create({
     textTransform: 'uppercase',
     fontSize: 16,
     padding: 10,
+  },
+  btn: {
+    width: 70,
+    backgroundColor: 'red',
+    height: 30,
+    marginTop: 20,
+    borderRadius: 20,
+  },
+  btnText: {
+    fontSize: 15,
+    color: '#ffff',
+    padding: 5,
+    textAlign: 'center',
   },
 });
 

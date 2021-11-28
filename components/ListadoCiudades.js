@@ -6,9 +6,8 @@ import ItemList from './ItemList';
 
 const ListadoCiudades = () => {
   const {listOfCitys} = useCities();
-  console.log(listOfCitys);
 
-  const renderItem = ({ item }) => <ItemList title={item.nombre} id={item.id}/>;
+  const renderItem = ({item}) => <ItemList title={item.nombre} id={item.id} />;
   return (
     <>
       <ScrollView>

@@ -1,70 +1,66 @@
 /* eslint-disable prettier/prettier */
-import React, { useState} from 'react';
+import React, {useState} from 'react';
 import {
+  Alert,
+  Keyboard,
   Pressable,
   StyleSheet,
   Text,
   TouchableHighlight,
+  TouchableWithoutFeedback,
   View,
 } from 'react-native';
 import {Picker} from '@react-native-picker/picker';
 import {getAllState} from '../Services/getDataCity';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useCities } from '../Hook/useCities';
+import {useCities} from '../Hook/useCities';
+import {TextInput} from 'react-native-gesture-handler';
+import {getWeatherForName} from '../Services/getDataWhater';
 
 const FormCiudades = ({provincias, setFormModal, formModal}) => {
   const [provSelected, setProvSelected] = useState(null);
-  const [citys, setcitys] = useState([]);
+  const [city, setCity] = useState();
   const [error, setError] = useState(null);
-  const [citySelected, setCitySelected] = useState(null);
-  const {listOfCitys, setListOfCitys} = useCities();
+  const {listOfCitys, setListOfCitys, storeData} = useCities();
 
-
-  const getDataCall = async () => {
-    getAllState(provSelected)
-      .then(resp => {
-        console.log(resp);
-        setcitys(resp);
-      })
-      .catch(err => {
-        console.log(err);
-        setError(
-          'Ocurrio un error al obtener la lista de ciudades, por favor intente nuevamente',
-        );
-      });
+  const ocultarTeclado = () => {
+    Keyboard.dismiss();
   };
 
-  const storeData = async data => {
+  const mostrarAlerta = () => {
+    Alert.alert('Error', 'No hay resultados, intenta con otra ciudad o país', [
+      {text: 'OK '},
+    ]);
+  };
+
+  const guardarCiudad = async () => {
     try {
-      await AsyncStorage.setItem('ciudades', data);
-    } catch (e) {
-      console.log(e);
+      const respuesta = await getWeatherForName(city);
+      if (respuesta) {
+        const {id, name} = respuesta;
+        const {lon, lat} = respuesta.coord;
+        const provincia = provincias.filter(prov => prov.id === provSelected);
+        const {nombre} = provincia;
+
+        let data = {
+          id: id,
+          nombre: name,
+          latitud: lat,
+          longitud: lon,
+          provincia: nombre,
+        };
+        const nuevaData = [...listOfCitys, data];
+        setListOfCitys(nuevaData);
+        storeData(JSON.stringify(nuevaData));
+
+        setFormModal(!formModal);
+      }
+    } catch (err) {
+      mostrarAlerta();
     }
   };
-  const guardarCiudad = async () => {
-    let data = {
-      id:'',
-      nombre: '',
-      latitud: '',
-      longitud: '',
-    };
-
-    citys.filter(city => {
-      if (city.id === citySelected) {
-        data.id = city.id;
-        data.nombre = city.nombre;
-        data.latitud = city.centroide.lat;
-        data.longitud = city.centroide.lon;
-      }
-    });
-    const nuevaData = [...listOfCitys, data];
-    setListOfCitys(nuevaData);
-    storeData(JSON.stringify(nuevaData));
-
-    setFormModal(!formModal);
-  };
   return (
-    <>
+    <TouchableWithoutFeedback onPress={() => ocultarTeclado()}>
       <View style={styles.modalView}>
         <Pressable
           style={[styles.button, styles.buttonClose]}
@@ -76,7 +72,6 @@ const FormCiudades = ({provincias, setFormModal, formModal}) => {
         <Picker
           selectedValue={provSelected}
           onValueChange={value => setProvSelected(value)}
-          onBlur={e => getDataCall()}
           itemStyle={{height: 120}}>
           <Picker.Item label="--Seleccione--" value="" />
           {provincias.map(prov => {
@@ -85,34 +80,25 @@ const FormCiudades = ({provincias, setFormModal, formModal}) => {
             );
           })}
         </Picker>
-        {citys && (
-          <View>
-            <Text style={styles.label}>Ciudades</Text>
-            <Picker
-              selectedValue={citySelected}
-              onValueChange={value => setCitySelected(value)}
-              onBlur={e => getDataCall()}
-              itemStyle={{height: 120}}>
-              <Picker.Item label="--Seleccione--" value="" />
-              {citys.map(city => {
-                return (
-                  <Picker.Item
-                    key={city.id}
-                    label={city.nombre}
-                    value={city.id}
-                  />
-                );
-              })}
-            </Picker>
-            <TouchableHighlight
-              style={styles.btnGuardar}
-              onPress={() => guardarCiudad()}>
-              <Text style={styles.txtBtn}>Guardar Ciudad</Text>
-            </TouchableHighlight>
-          </View>
-        )}
+        <View>
+          <Text style={styles.label}>Ciudades</Text>
+          <TextInput
+            value={city}
+            style={styles.input}
+            onChangeText={ciudad => setCity(ciudad)}
+            placeholder="Ciudad"
+            placeholderTextColor="#666"
+          />
+        </View>
+        <View>
+          <TouchableHighlight
+            style={styles.btnGuardar}
+            onPress={() => guardarCiudad()}>
+            <Text style={styles.txtBtn}>Guardar Ciudad</Text>
+          </TouchableHighlight>
+        </View>
       </View>
-    </>
+    </TouchableWithoutFeedback>
   );
 };
 const styles = StyleSheet.create({

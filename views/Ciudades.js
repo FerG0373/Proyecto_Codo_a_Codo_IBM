@@ -8,21 +8,23 @@ import {
   Text,
   Modal,
   Button,
+  Alert,
 } from 'react-native';
 import * as getDataState from '../Services/getDataState';
 import FormCiudades from '../components/FormCiudades';
 import TabComponent from '../components/TabComponent';
+import {SearchBar} from 'react-native-elements';
+import {useCities} from '../Hook/useCities';
 
 import Gradiente from '../components/Gradiente';
+import { useNavigation } from '@react-navigation/core';
 
-const Ciudades = ({navigation, route}) => {
-  const volver = () => {
-    navigation.navigate('Inicio');
-  };
+const Ciudades = () => {
   const [formModal, setFormModal] = useState(false);
   const [provincias, setProvincias] = useState([]);
-
-  const handleSearch = () => {};
+  const [search, setSearch] = useState(null);
+  const {listOfCitys, setCity, openValue, setOpenValue} = useCities();
+  const navigation = useNavigation();
 
   const getState = () => {
     getDataState
@@ -32,19 +34,39 @@ const Ciudades = ({navigation, route}) => {
       })
       .catch(err => console.log(err));
   };
+  const updateSearch = () => {
+    console.log("la que te pario")
+    // const oneCity = listOfCitys.find(city => city.nombre === value);
+    // if (oneCity) {
+    //   navigation.navigate('Clima', {resultado: oneCity});
+    // } else {
+    //   mostrarAlerta();
+    // }
+  };
 
   useEffect(() => {
     getState();
   }, []);
+
+  const mostrarAlerta = () => {
+    Alert.alert(
+      'Error',
+      'No hay resultados, la ciudad que buscas no se encuentra en el listado',
+      [{text: 'OK '}],
+    );
+  };
+
 
   return (
     <>
       <Gradiente colorGradiente={['#97A7B7', '#B98A90', '#745B83']} />
       <View style={styles.contenedor}>
         <View>
-          <TextInput
-            style={styles.search}
-            onChangeText={text => handleSearch(text)}
+          <SearchBar
+            lightTheme
+            placeholder="Buscar Ciudad"
+            onChangeText={updateSearch}
+            value={search}
           />
         </View>
         <View>
@@ -69,13 +91,9 @@ const Ciudades = ({navigation, route}) => {
           </Modal>
         </View>
 
-        <TabComponent />
+        <TabComponent openValue={openValue} />
 
-        <Button
-          title="ir a formulario"
-          onPress={() => navigation.navigate('Formulario')}
-        />
-        <Button title="Volver" onPress={() => volver()} />
+        {/* <Button title="Volver" onPress={() => volver()} /> */}
       </View>
     </>
   );
