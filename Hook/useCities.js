@@ -7,6 +7,7 @@ export const useCities = () => {
   const [listOfCitys, setListOfCitys] = useContext(ciudadesContext);
   const [loading, setLoadig] = useState(false);
 
+
   useEffect(() => {
     const getData = async () => {
       try {
@@ -23,5 +24,18 @@ export const useCities = () => {
     getData();
   }, [setListOfCitys]);
 
-  return {listOfCitys, setListOfCitys, loading};
+  const eliminarDelStorage = id => {
+    const ciudadesFiltradas = listOfCitys.filter(city => city.id !== id);
+    setListOfCitys(ciudadesFiltradas);
+  };
+
+  const storeData = async data => {
+    try {
+      await AsyncStorage.setItem('ciudades', data);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  return {listOfCitys, setListOfCitys, loading, eliminarDelStorage, storeData};
 };

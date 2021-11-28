@@ -7,7 +7,8 @@ import {
   useWindowDimensions,
   View,
 } from 'react-native';
-import {TabView, TabBar, SceneMap} from 'react-native-tab-view';
+import {TabView, SceneMap} from 'react-native-tab-view';
+import CitiesMap from './CitiesMap';
 import ListadoCiudades from './ListadoCiudades';
 
 const TabComponent = () => {
@@ -19,11 +20,7 @@ const TabComponent = () => {
   const layout = useWindowDimensions();
   const FirstRoute = () => <ListadoCiudades />;
 
-  const SecondRoute = () => (
-    <View style={styles.component2}>
-      <Text>Componente uno</Text>
-    </View>
-  );
+  const SecondRoute = () => <CitiesMap />;
   const renderScene = SceneMap({
     first: FirstRoute,
     second: SecondRoute,

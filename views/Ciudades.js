@@ -8,10 +8,13 @@ import {
   Text,
   Modal,
   Button,
+  Alert,
 } from 'react-native';
 import * as getDataState from '../Services/getDataState';
 import FormCiudades from '../components/FormCiudades';
 import TabComponent from '../components/TabComponent';
+import {SearchBar} from 'react-native-elements';
+import {useCities} from '../Hook/useCities';
 
 import Gradiente from '../components/Gradiente';
 
@@ -21,8 +24,8 @@ const Ciudades = ({navigation, route}) => {
   };
   const [formModal, setFormModal] = useState(false);
   const [provincias, setProvincias] = useState([]);
-
-  const handleSearch = () => {};
+  const [search, setSearch] = useState(null);
+  // const {listOfCitys}= useCities()
 
   const getState = () => {
     getDataState
@@ -32,20 +35,31 @@ const Ciudades = ({navigation, route}) => {
       })
       .catch(err => console.log(err));
   };
+  // const updateSearch = () => console.log(search);
 
   useEffect(() => {
     getState();
   }, []);
+
+  const mostrarAlerta = () => {
+    Alert.alert(
+      'Error',
+      'No hay resultados, la ciudad que buscas no se encuentra en el listado',
+      [{text: 'OK '}],
+    );
+  };
 
   return (
     <>
       <Gradiente colorGradiente={['#97A7B7', '#B98A90', '#745B83']} />
       <View style={styles.contenedor}>
         <View>
-          <TextInput
-            style={styles.search}
-            onChangeText={text => handleSearch(text)}
-          />
+          {/* <SearchBar
+            lightTheme
+            placeholder="Buscar Ciudad"
+            onChangeText={updateSearch}
+            value={search}
+          /> */}
         </View>
         <View>
           <TouchableHighlight
@@ -69,12 +83,8 @@ const Ciudades = ({navigation, route}) => {
           </Modal>
         </View>
 
-        <TabComponent />
+        <TabComponent  />
 
-        <Button
-          title="ir a formulario"
-          onPress={() => navigation.navigate('Formulario')}
-        />
         <Button title="Volver" onPress={() => volver()} />
       </View>
     </>
