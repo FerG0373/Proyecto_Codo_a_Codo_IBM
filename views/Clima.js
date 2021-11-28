@@ -1,108 +1,55 @@
 import React, {useEffect, useState} from "react";
 import { View, Text, StyleSheet, Image, Dimensions, ImageBackground } from "react-native";
 import MapView, { PROVIDER_GOOGLE, Marker } from "react-native-maps";
+import IconClima from "../components/IconClima";
+import NameClima from "../components/NameClima";
 
 export default function Clima ({route, navigation}) {
     
     //grados Kelvin para centigrados
     const kelvin = 273.15;
-    const [bgcolor, guardarBgcolor] = useState("rgb(71, 149, 212)")
-
-    console.log(route);
 
     const { resultado } = route.params;
     const {name, main, coord} = resultado;
-    
+    const {id} = resultado.weather[0];
     if (!name) return null;
     
     useEffect(() => {
-        //modificar los colores de fondo segun la temperatura
-        //const kelvin = 273.15;
-        //const {main} = resultado;
-        const actual = main.temp - kelvin;
-
-        if(actual<10){
-          guardarBgcolor("rgb(105, 108, 149)");
-        }else if(actual >= 10 && actual < 25){
-          guardarBgcolor("rgb(71, 149, 212)");
-        } else{
-          guardarBgcolor("rgb(178, 28, 61)");
+        //imagen tormenta electrica
+        if(id>=200 && id<300){
+            const imagen = require("../assets/img/electrica2.png");
         }
-    }, [main]);
-
-    const nombreClima = () => {
-        var nombreClimaActual="";
-
-        if(resultado.weather[0].id>=200 && resultado.weather[0].id<300){
-            nombreClimaActual="tormenta electrica";
+        else if(id>=300 && id<400){
+            //imagen llovizna
+            const imagen = require("../assets/img/lluvia3.png");
         }
-        else if(resultado.weather[0].id>=300 && resultado.weather[0].id<400){
-            nombreClimaActual="llovizna";
+        else if(id>=500 && id<600){
+            //imagen lluvia
+            const imagen = require("../assets/img/lluvia4.png");
         }
-        else if(resultado.weather[0].id>=500 && resultado.weather[0].id<600){
-            nombreClimaActual="lluvia";
+        else if(id>=600 && id<700){
+            //imagen nieve
+            const imagen = require("../assets/img/nieve1.png");
         }
-        else if(resultado.weather[0].id>=600 && resultado.weather[0].id<700){
-            nombreClimaActual="nieve";
+        else if(id>=700 && id<800){
+            //imagen neblina
+            const imagen = require("../assets/img/neblina1.png");
         }
-        else if(resultado.weather[0].id>=700 && resultado.weather[0].id<800){
-            nombreClimaActual="neblina";
+        else if(id===800){
+            //imagen despejado
+            const imagen = require("../assets/img/fondo.png");
         }
-        else if(resultado.weather[0].id===800){
-            nombreClimaActual="despejado";
-        }
-        else if(resultado.weather[0].id>800 && resultado.weather[0].id<900){
-            nombreClimaActual="nublado";
+        else if(id>800 && id<900){
+            //imagen nublado
+            const imagen = require("../assets/img/nubes5.png");
         }
         else{
-            nombreClimaActual="sin descripcion";
+            const imagen = require("../assets/img/fondo.png");
         }
-        return nombreClimaActual;
-    };
+    }, []);
 
-    const imagenClima = () => {
-        let imagenClimaActual;
-        const icon = resultado.weather[0].icon;
 
-        if(icon === "01d"){
-            imagenClimaActual = require("../assets/img/clima/sun.png");
-        }else if(icon === "01n"){
-            imagenClimaActual= require("../assets/img/clima/moon.png");
-        }else if(icon === "02d"){
-            imagenClimaActual=require("../assets/img/clima/cloud-sun.png");
-        }else if(icon === "02n"){
-            imagenClimaActual=require("../assets/img/clima/cloud.png");
-        }else if(icon === "03d" || icon === "03n"){
-            imagenClimaActual=require("../assets/img/clima/cloud.png");
-        }
-        else if(icon === "04n" || icon === "04d"){
-            imagenClimaActual=require("../assets/img/clima/cloud.png");
-        }else if(icon === "09n" || icon === "09d"){
-            imagenClimaActual=require("../assets/img/clima/rain-alt.png");
-        }else if(icon === "10d"){
-            imagenClimaActual=require("../assets/img/clima/rain-alt-sun.png");
-        }else if(icon === "10n"){
-            imagenClimaActual=require("../assets/img/clima/rain-alt-moon.png");
-        }else if(icon === "11n" || icon === "11d"){
-            imagenClimaActual=require("../assets/img/clima/light.png");
-        }
-        else if(icon === "13n" || icon === "13d"){
-            imagenClimaActual=require("../assets/img/clima/snow-alt.png");
-        }
-        else if(icon === "50n" || icon === "50d"){
-            imagenClimaActual=require("../assets/img/clima/fog.png");
-        }else{
-            imagenClimaActual="sin descripcion";
-        }
-        console.log(imagenClimaActual);
-        return imagenClimaActual;
-    };
-
-    const bgColorApp = {
-        backgroundColor: bgcolor,
-    };
-
-    const imagen = require("../assets/img/nubes5.png");
+    
 
     /* En el return se renderiza toda la vista de los datos del clima */
     return (
@@ -113,13 +60,13 @@ export default function Clima ({route, navigation}) {
                 <Text style={styles.titulo}>{ name }</Text>
 
                 <View style={{alignItems:"center"}}>
-                    <Image
-                        style={styles.imagenClima}
-                        source={imagenClima()}
+                    <IconClima
+                        icon={resultado.weather[0].icon}
                     />
-                    <Text style={styles.texto}>
-                        {nombreClima()}
-                    </Text>
+                    <NameClima
+                        estilo={styles.texto}
+                        id={resultado.weather[0].id}
+                    />
 
                 </View>
                 <Text style={[styles.texto, styles.actual]}>
