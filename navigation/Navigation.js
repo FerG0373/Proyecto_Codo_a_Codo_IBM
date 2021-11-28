@@ -10,7 +10,7 @@ import {Switch} from 'react-native-elements/dist/switch/switch';
 import {NavigationContainer} from '@react-navigation/native';
 
 import InicioStack from './InicioStack';
-import NosotrosStack from './NosotrosStack';
+import NosotrosStack from './nosotrosStack';
 import CiudadesStack from './CiudadesStack';
 
 const Tab = createBottomTabNavigator();

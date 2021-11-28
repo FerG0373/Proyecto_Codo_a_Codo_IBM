@@ -13,10 +13,10 @@ const CitiesMap = () => {
         style={styles.map}
         provider={PROVIDER_GOOGLE}
         initialRegion={{
-          latitude: '-38.416097',
-          longitude: '-63.616672',
-          latitudeDelta: 0.0922,
-          longitudeDelta: 0.0421,
+          latitude: -38.416097,
+          longitude: -63.616672,
+          latitudeDelta: 10,
+          longitudeDelta: 10,
         }}>
         {listOfCitys.map(city => {
           console.log(city);
@@ -34,7 +34,7 @@ const CitiesMap = () => {
 };
 const styles = StyleSheet.create({
   map: {
-    width: Dimensions.get('window').width - 60,
+    width: Dimensions.get('window').width,
     flex: 1,
   },
 });
