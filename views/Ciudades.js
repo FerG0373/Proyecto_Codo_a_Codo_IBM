@@ -17,14 +17,15 @@ import {SearchBar} from 'react-native-elements';
 import {useCities} from '../Hook/useCities';
 
 import Gradiente from '../components/Gradiente';
-import { useNavigation } from '@react-navigation/core';
 
-const Ciudades = () => {
+const Ciudades = ({navigation, route}) => {
+  const volver = () => {
+    navigation.navigate('Inicio');
+  };
   const [formModal, setFormModal] = useState(false);
   const [provincias, setProvincias] = useState([]);
   const [search, setSearch] = useState(null);
-  const {listOfCitys, setCity, openValue, setOpenValue} = useCities();
-  const navigation = useNavigation();
+  // const {listOfCitys}= useCities()
 
   const getState = () => {
     getDataState
@@ -34,15 +35,7 @@ const Ciudades = () => {
       })
       .catch(err => console.log(err));
   };
-  const updateSearch = () => {
-    console.log("la que te pario")
-    // const oneCity = listOfCitys.find(city => city.nombre === value);
-    // if (oneCity) {
-    //   navigation.navigate('Clima', {resultado: oneCity});
-    // } else {
-    //   mostrarAlerta();
-    // }
-  };
+  // const updateSearch = () => console.log(search);
 
   useEffect(() => {
     getState();
@@ -56,18 +49,17 @@ const Ciudades = () => {
     );
   };
 
-
   return (
     <>
       <Gradiente colorGradiente={['#97A7B7', '#B98A90', '#745B83']} />
       <View style={styles.contenedor}>
         <View>
-          <SearchBar
+          {/* <SearchBar
             lightTheme
             placeholder="Buscar Ciudad"
             onChangeText={updateSearch}
             value={search}
-          />
+          /> */}
         </View>
         <View>
           <TouchableHighlight
@@ -91,9 +83,9 @@ const Ciudades = () => {
           </Modal>
         </View>
 
-        <TabComponent openValue={openValue} />
+        <TabComponent  />
 
-        {/* <Button title="Volver" onPress={() => volver()} /> */}
+        <Button title="Volver" onPress={() => volver()} />
       </View>
     </>
   );

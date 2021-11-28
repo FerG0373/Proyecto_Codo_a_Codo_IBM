@@ -44,7 +44,6 @@ const ItemList = ({title, id}) => {
     ]);
   };
   const handleDelete = () => {
-    clearAll();
     eliminarDelStorage(id);
   };
 
