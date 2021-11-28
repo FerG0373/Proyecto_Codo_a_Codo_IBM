@@ -17,6 +17,8 @@ import TabComponent from '../components/TabComponent';
 import {SearchBar} from 'react-native-elements';
 import {useCities} from '../Hook/useCities';
 
+import { Overlay } from "react-native-elements";
+
 import Gradiente from '../components/Gradiente';
 
 
@@ -86,21 +88,30 @@ const Ciudades = ({navigation, route}) => {
               underlayColor="#6d5197">
               <Text style={[styles.textoSubmit, pressAñadir? styles.colorTextoBtnPress: styles.colorTextoBtnNormal]}>Añadir ciudad</Text>
             </TouchableHighlight>
-            <Modal
-              animationType="slide"
+
+            <Overlay 
+              isVisible={formModal}
               transparent={true}
-              visible={formModal}
+              windowBackgroudColor="rgba(0,0,0,0.5)"
+              overlayBackgroudColor="transparent"
+              animationType="fade"
+              overlayStyle={styles.overlay}
               backdrop
               onRequestClose={() => {
                 //   Alert.alert('Modal has been closed.');
                 setFormModal(!formModal);
-              }}>
+              }}
+            >
               <FormCiudades
                 provincias={provincias}
                 setFormModal={setFormModal}
                 formModal={formModal}
               />
-            </Modal>
+              
+            </Overlay>
+
+            
+            
           </View>
 
           <TabComponent  />
@@ -137,6 +148,22 @@ const Ciudades = ({navigation, route}) => {
 };
 
 
+
+/*<Modal
+              animationType="slide"
+              transparent={true}
+              visible={formModal}
+              backdrop
+              onRequestClose={() => {
+                //   Alert.alert('Modal has been closed.');
+                setFormModal(!formModal);
+              }}>
+              <FormCiudades
+                provincias={provincias}
+                setFormModal={setFormModal}
+                formModal={formModal}
+              />
+              </Modal>*/
 const styles = StyleSheet.create({
   contenedor: {
     flex: 1,
@@ -185,7 +212,18 @@ const styles = StyleSheet.create({
   },
   imagen:{
     flex:1
-  }
+  },
+  overlay: {
+    height: "50%",
+    width: "90%",
+    backgroudColor: "#fff",
+    borderColor: "#6d5197",
+    borderWidth: 2,
+    borderRadius: 20,
+    padding: 10,
+    elevation: 5,
+},
+
 });
 
 export default Ciudades;

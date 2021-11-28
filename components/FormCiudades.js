@@ -117,19 +117,19 @@ const FormCiudades = ({provincias, setFormModal, formModal}) => {
 };
 const styles = StyleSheet.create({
   modalView: {
-    marginTop:"45%",
-    margin: 10,
-    backgroundColor: '#ffff',
-    borderRadius: 20,
-    padding: 35,
-    shadowColor: '#000',
+    //marginTop:"45%",
+    //margin: 10,
+    //backgroundColor: '#ffff',
+    //borderRadius: 20,
+    padding: 10,
+    /*shadowColor: '#000',
     shadowOffset: {
       width: 0,
       height: 2,
     },
     shadowOpacity: 0.25,
     shadowRadius: 4,
-    elevation: 5,
+    elevation: 5,*/
   },
   label: {
     textTransform: 'uppercase',
