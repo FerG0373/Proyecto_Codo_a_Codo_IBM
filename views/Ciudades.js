@@ -9,7 +9,8 @@ import {
   Modal,
   Button,
   Alert,
-  ImageBackground
+  ImageBackground,
+  Dimensions
 } from 'react-native';
 import * as getDataState from '../Services/getDataState';
 import FormCiudades from '../components/FormCiudades';
@@ -18,7 +19,7 @@ import {SearchBar} from 'react-native-elements';
 import {useCities} from '../Hook/useCities';
 
 import { Overlay } from "react-native-elements";
-
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import Gradiente from '../components/Gradiente';
 
 
@@ -88,27 +89,29 @@ const Ciudades = ({navigation, route}) => {
               underlayColor="#6d5197">
               <Text style={[styles.textoSubmit, pressAñadir? styles.colorTextoBtnPress: styles.colorTextoBtnNormal]}>Añadir ciudad</Text>
             </TouchableHighlight>
-
-            <Overlay 
-              isVisible={formModal}
-              transparent={true}
-              windowBackgroudColor="rgba(0,0,0,0.5)"
-              overlayBackgroudColor="transparent"
-              animationType="fade"
-              overlayStyle={styles.overlay}
-              backdrop
-              onRequestClose={() => {
-                //   Alert.alert('Modal has been closed.');
-                setFormModal(!formModal);
-              }}
-            >
-              <FormCiudades
-                provincias={provincias}
-                setFormModal={setFormModal}
-                formModal={formModal}
-              />
-              
-            </Overlay>
+            <KeyboardAwareScrollView>
+              <Overlay 
+                isVisible={formModal}
+                transparent={true}
+                windowBackgroudColor="rgba(0,0,0,0.5)"
+                overlayBackgroudColor="transparent"
+                animationType="fade"
+                overlayStyle={styles.overlay}
+                backdrop
+                onRequestClose={() => {
+                  //   Alert.alert('Modal has been closed.');
+                  setFormModal(!formModal);
+                }}
+              >
+                <FormCiudades
+                  provincias={provincias}
+                  setFormModal={setFormModal}
+                  formModal={formModal}
+                />
+                
+              </Overlay>
+            </KeyboardAwareScrollView>
+            
 
             
             
@@ -214,8 +217,8 @@ const styles = StyleSheet.create({
     flex:1
   },
   overlay: {
-    height: "50%",
-    width: "90%",
+    height: (Dimensions.get('window').height)/2,
+    width: Dimensions.get('window').width-20,
     backgroudColor: "#fff",
     borderColor: "#6d5197",
     borderWidth: 2,
