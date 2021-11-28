@@ -5,7 +5,6 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {Icon} from 'react-native-elements';
 import {Switch} from 'react-native-elements/dist/switch/switch';
 
-
 // React Navigation
 import {NavigationContainer} from '@react-navigation/native';
 
@@ -21,10 +20,15 @@ const Navigation = () => {
       <NavigationContainer>
         <Tab.Navigator
           initialRouteName="InicioS"
+          shifting
           screenOptions={({route}) => ({
             tabBarIcon: ({color}) => screenOptions(route, color),
-            tabBarActiveTintColor: '#00a680',
+            tabBarActiveTintColor: 'white',
             tabBarInactiveTintColor: '#646464',
+            tabBarActiveBackgroundColor:"#6d5197",
+            //tabBarInactiveBackgroundColor:"white"
+            //tabBarShowLabel: false,
+            //tabBarBackground buscar permite degradado e imagen
           })}>
           <Tab.Screen
             name="InicioS"
@@ -34,6 +38,7 @@ const Navigation = () => {
               headerShown: false,
             }}
           />
+          
           <Tab.Screen
             name="CiudadesS"
             component={CiudadesStack}

@@ -9,14 +9,19 @@ const NosotrosStack = () => {
   return (
     <Stack.Navigator
       screenOptions={{
-        headerTitleAlign: 'center',
+        headerTitleAlign: 'left',
         headerStyle: {
-          backgroundColor: '#rgb(105, 108, 149)',
+          //backgroundColor: "#6d5197",
         },
-        headerTintColor: '#fff',
+        //headerTintColor: '#fff',
+        headerTintColor: '#6d5197',
         headerTitleStyle: {
           fontWeight: 'bold',
         },
+        headerTransparent: true,
+        headerShadowVisible: false,
+        headerBlurEffect: "extraLight",
+        animation:"slide_from_left"
       }}>
       <Stack.Screen
         name="Nosotros"

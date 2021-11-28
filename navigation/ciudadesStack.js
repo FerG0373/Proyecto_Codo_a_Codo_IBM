@@ -14,7 +14,7 @@ const CiudadesStack = () => {
       screenOptions={{
         headerTitleAlign: 'center',
         headerStyle: {
-          backgroundColor: '#rgb(105, 108, 149)',
+          backgroundColor: "#6d5197",
         },
         headerTintColor: '#fff',
         headerTitleStyle: {

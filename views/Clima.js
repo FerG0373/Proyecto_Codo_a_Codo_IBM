@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import { View, Text, StyleSheet, Image, Dimensions } from "react-native";
+import { View, Text, StyleSheet, Image, Dimensions, ImageBackground } from "react-native";
 import MapView, { PROVIDER_GOOGLE, Marker } from "react-native-maps";
 
 export default function Clima ({route, navigation}) {
@@ -102,12 +102,62 @@ export default function Clima ({route, navigation}) {
         backgroundColor: bgcolor,
     };
 
+    const imagen = require("../assets/img/nubes5.png");
+
     /* En el return se renderiza toda la vista de los datos del clima */
     return (
-        <View style={[styles.clima, bgColorApp]}>
+        <ImageBackground source={imagen} resizeMode="cover" style={styles.imagen}>
+            <View style={[styles.clima/*, bgColorApp*/]}>
 
-            <Text style={styles.texto}>Ciudad de { name }</Text>
+                <Text style={styles.titulo}>Ciudad de</Text>
+                <Text style={styles.titulo}>{ name }</Text>
 
+                <View style={{alignItems:"center"}}>
+                    <Image
+                        style={styles.imagenClima}
+                        source={imagenClima()}
+                    />
+                    <Text style={styles.texto}>
+                        {nombreClima()}
+                    </Text>
+
+                </View>
+                <Text style={[styles.texto, styles.actual]}>
+                    {(main.temp - kelvin).toFixed(1) }
+                    <Text style={styles.temperatura}>
+                        &#x2103;
+                    </Text>
+                    
+                </Text>
+
+                <View style={styles.temperaturas}>
+                    <Text style={styles.texto}>
+                        <Text style={styles.temperatura}>
+                            Min { (main.temp_min - kelvin).toFixed(1) } &#x2103; /
+                        Max { (main.temp_max - kelvin).toFixed(1) } &#x2103;
+                        </Text>
+                    </Text>
+
+                    <Text style={styles.texto}>S. Termica {" "}
+                        <Text style={styles.temperatura}>
+                            { (main.feels_like - kelvin).toFixed(1) } &#x2103;
+                        </Text>
+                    </Text>
+
+                    <Text style={styles.texto}>Humedad {" "}
+                        <Text style={styles.temperatura}>
+                            { parseInt(main.humidity) }%
+                        </Text>
+                    </Text>
+                </View>
+            </View>
+        </ImageBackground>
+        
+        
+    );
+};
+
+/* Mapa que se saco de aca
             <MapView 
                 style={styles.map}
                 provider={PROVIDER_GOOGLE}
@@ -125,59 +175,36 @@ export default function Clima ({route, navigation}) {
                 />
               
             </MapView>
-            <Text style={[styles.texto, styles.actual]}>
-                {(main.temp - kelvin).toFixed(1) }
-                <Text style={styles.temperatura}>
-                    &#x2103;
-                </Text>
-        
-                <Image
-                    style={{tintColor:"#FFF"}}
-                    source={imagenClima()}
-                />
-                
-            </Text>
-
-            <View style={styles.temperaturas}>
-
-                <Text style={styles.texto}>
-                    {nombreClima()}
-                </Text>
-
-                <Text style={styles.texto}>
-                    <Text style={styles.temperatura}>
-                        Min { (main.temp_min - kelvin).toFixed(1) } &#x2103; /
-                       Max { (main.temp_max - kelvin).toFixed(1) } &#x2103;
-                    </Text>
-                </Text>
-
-                <Text style={styles.texto}>S. Termica {" "}
-                    <Text style={styles.temperatura}>
-                        { (main.feels_like - kelvin).toFixed(1) } &#x2103;
-                    </Text>
-                </Text>
-
-                <Text style={styles.texto}>Humedad {" "}
-                    <Text style={styles.temperatura}>
-                        { parseInt(main.humidity) }%
-                    </Text>
-                </Text>
-            </View>
-        </View>
-        
-    );
-};
+         */
 
 const styles = StyleSheet.create({
     clima:{
-        marginBottom: 20,
-        alignItems:"center",
+        marginTop:35,
+        //marginBottom: 20,
+        //alignItems:"center",
+    },
+    titulo:{
+        color:"#FFF",
+        fontSize:26,
+        textAlign: "center",
+        textShadowColor: '#000',
+        textShadowOffset: { width: 2, height: 2 },
+        textShadowRadius: 2,
+        //textShadowColor:"black",
+        textTransform:"uppercase",
+        fontWeight: "bold",
     },
     texto:{
         color:"#FFF",
         fontSize:20,
         textAlign: "center",
         marginRight: 20,
+        textShadowColor: '#000',
+        textShadowOffset: { width: 2, height: 2 },
+        textShadowRadius: 2,
+        textTransform:"uppercase",
+        fontWeight: "bold",
+
     },
     actual:{   
         fontSize:80,
@@ -196,5 +223,16 @@ const styles = StyleSheet.create({
     map:{
         width:Dimensions.get('window').width - 60,
         height:300,
+    },
+    imagen:{
+        flex: 1,
+        //justifyContent: "center"
+    },
+    imagenClima:{
+        marginTop:20,
+        tintColor:"#FFF",
+        borderColor:"black",
+        width:220,
+        height:220,
     },
 });

@@ -83,13 +83,14 @@ const Ciudades = ({navigation, route}) => {
           </Modal>
         </View>
 
-        <TabComponent  />
+        <Button title="Form" onPress={() => navigation.navigate("Formulario")} />
 
         <Button title="Volver" onPress={() => volver()} />
       </View>
     </>
   );
 };
+// <TabComponent  /> linea 86
 
 const styles = StyleSheet.create({
   contenedor: {

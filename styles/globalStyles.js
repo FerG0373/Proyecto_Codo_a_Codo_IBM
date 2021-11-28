@@ -8,8 +8,9 @@ const globalStyles = StyleSheet.create({
         padding: 4,
         textTransform:"uppercase",
         //color: "white",
-        borderBottomColor: "#1f2366",
-        borderBottomWidth: StyleSheet.hairlineWidth
+        borderBottomColor: "#6d5197",
+        borderBottomWidth: StyleSheet.hairlineWidth,
+        color: "#6d5197"
     },
     parrafo: {
         fontSize: 16,
