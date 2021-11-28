@@ -9,18 +9,18 @@ const NosotrosStack = () => {
   return (
     <Stack.Navigator
       screenOptions={{
-        headerTitleAlign: 'left',
+        headerTitleAlign: 'center',
         headerStyle: {
-          //backgroundColor: "#6d5197",
+          backgroundColor: "#6d5197",
         },
-        //headerTintColor: '#fff',
-        headerTintColor: '#6d5197',
+        headerTintColor: '#fff',
+        //headerTintColor: '#6d5197',
         headerTitleStyle: {
           fontWeight: 'bold',
         },
-        headerTransparent: true,
-        headerShadowVisible: false,
-        headerBlurEffect: "extraLight",
+        //headerTransparent: true,
+        //headerShadowVisible: false,
+        //headerBlurEffect: "extraLight",
         animation:"slide_from_left"
       }}>
       <Stack.Screen
