@@ -1,8 +1,9 @@
 import React, {useEffect, useState} from "react";
-import { View, Text, StyleSheet, Image, Dimensions, ImageBackground } from "react-native";
+import { View, Text, StyleSheet, Image, Dimensions, ImageBackground, ScrollView } from "react-native";
 import MapView, { PROVIDER_GOOGLE, Marker } from "react-native-maps";
 import IconClima from "../components/IconClima";
 import NameClima from "../components/NameClima";
+import ImagenFondo from "../components/ImagenFondo";
 
 export default function Clima ({route, navigation}) {
     
@@ -14,49 +15,43 @@ export default function Clima ({route, navigation}) {
     const {id} = resultado.weather[0];
     if (!name) return null;
     
-    const imagen = require("../assets/img/electrica2.png");
+    //le asigna una imagen de fondo segun el clima
+    const imagenFondo = () => {
+        var imagen = require("../assets/img/fondo.png");
 
-    useEffect(() => {
-        //imagen tormenta electrica
+        //le asigna una imagen de fondo segun el clima
         if(id>=200 && id<300){
-            const imagen = require("../assets/img/electrica2.png");
-        }
-        else if(id>=300 && id<400){
+            //imagen tormenta electrica
+            imagen = require("../assets/img/electrica2.png");
+        }else if(id>=300 && id<400){
             //imagen llovizna
-            const imagen = require("../assets/img/lluvia3.png");
-        }
-        else if(id>=500 && id<600){
+            imagen = require("../assets/img/lluvia3.png");
+        }else if(id>=500 && id<600){
             //imagen lluvia
-            const imagen = require("../assets/img/lluvia4.png");
-        }
-        else if(id>=600 && id<700){
+            imagen = require("../assets/img/lluvia4.png");
+        }else if(id>=600 && id<700){
             //imagen nieve
-            const imagen = require("../assets/img/nieve1.png");
-        }
-        else if(id>=700 && id<800){
+            imagen = require("../assets/img/nieve1.png");
+        }else if(id>=700 && id<800){
             //imagen neblina
-            const imagen = require("../assets/img/neblina1.png");
-        }
-        else if(id===800){
+            imagen = require("../assets/img/neblina1.png");
+        }else if(id===800){
             //imagen despejado
-            const imagen = require("../assets/img/fondo.png");
-        }
-        else if(id>800 && id<900){
+            imagen = require("../assets/img/fondo.png");
+        }else if(id>800 && id<900){
             //imagen nublado
-            const imagen = require("../assets/img/nubes5.png");
+            imagen = require("../assets/img/nubes5.png");
+        }else{
+            imagen = require("../assets/img/fondo.png");
         }
-        else{
-            const imagen = require("../assets/img/fondo.png");
-        }
-    }, []);
-
-
-    
+        return imagen;
+    };
+   
 
     /* En el return se renderiza toda la vista de los datos del clima */
     return (
-        <ImageBackground source={imagen} resizeMode="cover" style={styles.imagen}>
-            <View style={[styles.clima/*, bgColorApp*/]}>
+        <ImageBackground source={imagenFondo()} resizeMode="cover" style={styles.imagen}>
+            <ScrollView style={[styles.clima/*, bgColorApp*/]}>
 
                 <Text style={styles.titulo}>Ciudad de</Text>
                 <Text style={styles.titulo}>{ name }</Text>
@@ -99,7 +94,7 @@ export default function Clima ({route, navigation}) {
                         </Text>
                     </Text>
                 </View>
-            </View>
+            </ScrollView>
         </ImageBackground>
         
         

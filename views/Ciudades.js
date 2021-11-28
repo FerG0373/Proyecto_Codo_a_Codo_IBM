@@ -19,6 +19,10 @@ import {useCities} from '../Hook/useCities';
 import Gradiente from '../components/Gradiente';
 
 const Ciudades = ({navigation, route}) => {
+
+  const [pressVolver, guardarPressVolver] = useState(false);
+  const [pressForm, guardarPressForm] = useState(false);
+  
   const volver = () => {
     navigation.navigate('Inicio');
   };
@@ -83,9 +87,30 @@ const Ciudades = ({navigation, route}) => {
           </Modal>
         </View>
 
-        <Button title="Form" onPress={() => navigation.navigate("Formulario")} />
-
-        <Button title="Volver" onPress={() => volver()} />
+        <View>
+          <TouchableHighlight 
+            onPress={() => navigation.navigate("Formulario")} 
+            onPressIn={ () => guardarPressForm(true) } 
+            onPressOut={ () => guardarPressForm(false) } 
+            style={styles.btn}
+            underlayColor="#6d5197"
+          >
+            <Text style={[styles.textoSubmit, pressForm? styles.colorTextoBtnPress: styles.colorTextoBtnNormal]}>From</Text>
+          </TouchableHighlight>
+        </View>
+        <View>
+          <TouchableHighlight 
+            onPress={ () => volver() } 
+            onPressIn={ () => guardarPressVolver(true) } 
+            onPressOut={ () => guardarPressVolver(false) } 
+            style={styles.btn}
+            underlayColor="#6d5197"
+          >
+            <Text style={[styles.textoSubmit, pressVolver? styles.colorTextoBtnPress: styles.colorTextoBtnNormal]}>Volver</Text>
+          </TouchableHighlight>
+        </View>
+        
+        
       </View>
     </>
   );
@@ -117,6 +142,26 @@ const styles = StyleSheet.create({
     textTransform: 'uppercase',
     fontSize: 18,
     padding: 10,
+  },
+  btn:{
+    //backgroundColor:"#1f2366",
+    padding: 12,
+    width:150,
+    marginVertical: 10,
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: '#6d5197',
+    backgroundColor: "transparent"
+  },
+  textoSubmit: {
+      fontWeight: "bold",
+      textAlign: "center",
+  },
+  colorTextoBtnNormal:{
+      color: "#6d5197",
+  },
+  colorTextoBtnPress:{
+      color: "white",
   },
 });
 
