@@ -18,7 +18,7 @@ ejecutar)._
 
 ## Pasos para ejecutar el proyecto ⚙️
 
-_Librerias necesarias para la ejecucion de el proyecto_
+### Librerias necesarias para la ejecucion de el proyecto
 
 * [React Navigation](https://reactnavigation.org/docs/getting-started/) - El framework para realizar la navegacion de la aplicacion
 
@@ -41,6 +41,64 @@ Tambien se necesitara instalar:
 ```
 yarn add @react-navigation/bottom-tabs
 ```
+* [AsyncStorage](https://react-native-async-storage.github.io/async-storage/docs/install/) - Libreria que se encarga de la persistencia de los datos
+
+Comando para instalar el componente:
+```
+yarn add @react-native-async-storage/async-storage
+```
+* [Picker]() - Libreria que se encarga de
+
+Comando para instalar el componente:
+```
+yarn add
+```
+* [React Native Elements]() - Libreria que se encarga de
+
+Comando para instalar el componente:
+```
+yarn add
+```
+* [React Native Vector Icons]() - Libreria que se encarga de
+
+Comando para instalar el componente:
+```
+yarn add
+```
+* [react-native-maps]() - Libreria que se encarga de
+
+Comando para instalar el componente:
+```
+yarn add
+```
+* [react-native-pager-view]() - Libreria que se encarga de
+
+Comando para instalar el componente:
+```
+yarn add
+```
+* [react-native-tab-view]() - Libreria que se encarga de
+
+Comando para instalar el componente:
+```
+yarn add
+```
+* [React Native Keyboard Aware Scroll View]() - Libreria que se encarga de
+
+Comando para instalar el componente:
+```
+yarn add
+```
+### Pasos para ejecutar el proyecto de GitHub
+
+_Aca van los comandos para clonar y luego ejecutar_
+
+## Autores ✒️
+
+* **Vanina Eliana Armida** - *Desarrollo* - [vaniar86](https://github.com/vaniar86)
+* **Fernando Daniel González** - *Desarrollo* - [FerG0373](https://github.com/FerG0373)
+* **Matias Nicolas Rivero** - *Desarrollo* - [Mathyz1](https://github.com/Mathyz1)
+
 --------------------------------------
 # Plantilla que saque
 
@@ -54,36 +112,6 @@ _iconos:_ 🚀 📋 🔧 ⚙️ 🔩 ⌨️ 📦 🛠️ 🖇️ 📖 📌 📄 
 
 Esto es para **destacar palabras** en el readme.
 
-```
-esto no se si seria para codigo
-```
- 
-_Aca es como mencionar cosas que utilizamos del proyecto y que sean linkeables_
-_Menciona las herramientas que utilizaste para crear tu proyecto_
-
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - El framework web usado
-* [Maven](https://maven.apache.org/) - Manejador de dependencias
-* [ROME](https://rometools.github.io/rome/) - Usado para generar RSS
-
  _Aca hace linkeable un parrafo de texto_
 
 Usamos [SemVer](http://semver.org/) para el versionado. Para todas las versiones disponibles, mira los [tags en este repositorio](https://github.com/tu/proyecto/tags).
-
-## Autores ✒️
-
-_Menciona a todos aquellos que ayudaron a levantar el proyecto desde sus inicios_
-
-* **Andrés Villanueva** - *Trabajo Inicial* - [villanuevand](https://github.com/villanuevand)
-* **Fulanito Detal** - *Documentación* - [fulanitodetal](#fulanito-de-tal)
-
-También puedes mirar la lista de todos los [contribuyentes](https://github.com/your/project/contributors) quíenes han participado en este proyecto. 
-
- _y aca mas relleno_
-
-* Comenta a otros sobre este proyecto 📢
-* Invita una cerveza 🍺 o un café ☕ a alguien del equipo. 
-* Da las gracias públicamente 🤓.
-* etc.
-
----
-⌨️ con ❤️ por [Villanuevand](https://github.com/Villanuevand) 😊
