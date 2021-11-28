@@ -14,6 +14,8 @@ export default function Clima ({route, navigation}) {
     const {id} = resultado.weather[0];
     if (!name) return null;
     
+    const imagen = require("../assets/img/electrica2.png");
+
     useEffect(() => {
         //imagen tormenta electrica
         if(id>=200 && id<300){
