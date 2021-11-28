@@ -29,7 +29,7 @@ const Ciudades = ({navigation, route}) => {
   const [formModal, setFormModal] = useState(false);
   const [provincias, setProvincias] = useState([]);
   const [search, setSearch] = useState(null);
-  // const {listOfCitys}= useCities()
+  // const {setTerm} = useCities();
 
   const getState = () => {
     getDataState
@@ -39,7 +39,9 @@ const Ciudades = ({navigation, route}) => {
       })
       .catch(err => console.log(err));
   };
-  // const updateSearch = () => console.log(search);
+  const updateSearch = value => {
+    setSearch(value);
+  };
 
   useEffect(() => {
     getState();
@@ -58,12 +60,13 @@ const Ciudades = ({navigation, route}) => {
       <Gradiente colorGradiente={['#97A7B7', '#B98A90', '#745B83']} />
       <View style={styles.contenedor}>
         <View>
-          {/* <SearchBar
+          <SearchBar
             lightTheme
             placeholder="Buscar Ciudad"
-            onChangeText={updateSearch}
+            onChangeText={text => updateSearch(text)}
             value={search}
-          /> */}
+          />
+          
         </View>
         <View>
           <TouchableHighlight
