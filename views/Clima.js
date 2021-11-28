@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, Image, Dimensions, ImageBackground, ScrollView 
 import MapView, { PROVIDER_GOOGLE, Marker } from "react-native-maps";
 import IconClima from "../components/IconClima";
 import NameClima from "../components/NameClima";
-import ImagenFondo from "../components/ImagenFondo";
+
 
 export default function Clima ({route, navigation}) {
     

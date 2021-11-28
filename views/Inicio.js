@@ -1,9 +1,11 @@
 import React from 'react';
-import { Text, StyleSheet, View, Button, Dimensions } from 'react-native';
+import { Text, StyleSheet, View, Button, Dimensions, ImageBackground } from 'react-native';
 import globalStyles from '../styles/globalStyles';
 import Gradiente from '../components/Gradiente';
 
 const Inicio = ({navigation}) => {
+    
+    const imagen = require("../assets/img/fondo2.png");
     
     const visitarNosotros = () => {
         navigation.navigate('Nosotros');
@@ -14,10 +16,8 @@ const Inicio = ({navigation}) => {
     };
 
     return (  
-        <>    
-            <Gradiente
-                colorGradiente={['#97A7B7', '#B98A90', '#745B83']}
-            />
+        <>  
+        <ImageBackground source={imagen} resizeMode="cover" style={styles.imagen}>
             <View style={styles.contenedor}>
                 <Text style={styles.nombreAplicacion}>App Clima</Text>
                 <Text style={[globalStyles.titulo]}>Descripcion</Text>
@@ -26,6 +26,8 @@ const Inicio = ({navigation}) => {
                 <Text style={[globalStyles.titulo]}>Uso</Text>
                 <Text style={globalStyles.parrafo}>Sin poppins: Aca va como se usa la aplicacion</Text>                       
             </View>
+        </ImageBackground> 
+            
         </>
     );
     
@@ -41,6 +43,10 @@ const styles = StyleSheet.create({
         marginTop:50,
         marginBottom:50
     },
+    imagen:{
+        flex:1
+    }
+
     
 });
 

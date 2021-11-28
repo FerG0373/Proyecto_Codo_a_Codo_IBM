@@ -9,6 +9,7 @@ import {
   Modal,
   Button,
   Alert,
+  ImageBackground
 } from 'react-native';
 import * as getDataState from '../Services/getDataState';
 import FormCiudades from '../components/FormCiudades';
@@ -18,10 +19,14 @@ import {useCities} from '../Hook/useCities';
 
 import Gradiente from '../components/Gradiente';
 
+
 const Ciudades = ({navigation, route}) => {
 
   const [pressVolver, guardarPressVolver] = useState(false);
   const [pressForm, guardarPressForm] = useState(false);
+  const [pressAñadir, guardarPressAñadir] = useState(false);
+
+  const imagen = require("../assets/img/fondo2.png");
   
   const volver = () => {
     navigation.navigate('Inicio');
@@ -57,68 +62,80 @@ const Ciudades = ({navigation, route}) => {
 
   return (
     <>
-      <Gradiente colorGradiente={['#97A7B7', '#B98A90', '#745B83']} />
-      <View style={styles.contenedor}>
-        <View>
-          <SearchBar
-            lightTheme
-            placeholder="Buscar Ciudad"
-            onChangeText={text => updateSearch(text)}
-            value={search}
-          />
+      <ImageBackground source={imagen} resizeMode="cover" style={styles.imagen}>
+        <View style={styles.contenedor}>
+          <View>
+            <SearchBar
+              lightTheme
+              placeholder="Buscar Ciudad"
+              onChangeText={text => updateSearch(text)}
+              value={search}
+              inputStyle={{color:"black"}}
+              round
+              //containerStyle={{backgroundColor: 'transparent',borderWidth:0}}
+            />
+            
+          </View>
+          <View style={{alignItems:"center"}}>
+            <TouchableHighlight
+              //style={styles.button}
+              onPress={() => setFormModal(true)}
+              onPressIn={ () => guardarPressAñadir(true) } 
+              onPressOut={ () => guardarPressAñadir(false) } 
+              style={styles.btn}
+              underlayColor="#6d5197">
+              <Text style={[styles.textoSubmit, pressAñadir? styles.colorTextoBtnPress: styles.colorTextoBtnNormal]}>Añadir ciudad</Text>
+            </TouchableHighlight>
+            <Modal
+              animationType="slide"
+              transparent={true}
+              visible={formModal}
+              backdrop
+              onRequestClose={() => {
+                //   Alert.alert('Modal has been closed.');
+                setFormModal(!formModal);
+              }}>
+              <FormCiudades
+                provincias={provincias}
+                setFormModal={setFormModal}
+                formModal={formModal}
+              />
+            </Modal>
+          </View>
+
+          <TabComponent  />
+          
+          <View style={{alignItems:"center"}}>
+            <TouchableHighlight 
+              onPress={() => navigation.navigate("Formulario")} 
+              onPressIn={ () => guardarPressForm(true) } 
+              onPressOut={ () => guardarPressForm(false) } 
+              style={styles.btn}
+              underlayColor="#6d5197"
+            >
+              <Text style={[styles.textoSubmit, pressForm? styles.colorTextoBtnPress: styles.colorTextoBtnNormal]}>From</Text>
+            </TouchableHighlight>
+          </View>
+          <View style={{alignItems:"center"}}>
+            <TouchableHighlight 
+              onPress={ () => volver() } 
+              onPressIn={ () => guardarPressVolver(true) } 
+              onPressOut={ () => guardarPressVolver(false) } 
+              style={styles.btn}
+              underlayColor="#6d5197"
+            >
+              <Text style={[styles.textoSubmit, pressVolver? styles.colorTextoBtnPress: styles.colorTextoBtnNormal]}>Volver</Text>
+            </TouchableHighlight>
+          </View>
           
         </View>
-        <View>
-          <TouchableHighlight
-            style={styles.button}
-            onPress={() => setFormModal(true)}>
-            <Text style={styles.textBotton}>Añadir ciudad</Text>
-          </TouchableHighlight>
-          <Modal
-            animationType="slide"
-            transparent={true}
-            visible={formModal}
-            onRequestClose={() => {
-              //   Alert.alert('Modal has been closed.');
-              setFormModal(!formModal);
-            }}>
-            <FormCiudades
-              provincias={provincias}
-              setFormModal={setFormModal}
-              formModal={formModal}
-            />
-          </Modal>
-        </View>
-
-        <View>
-          <TouchableHighlight 
-            onPress={() => navigation.navigate("Formulario")} 
-            onPressIn={ () => guardarPressForm(true) } 
-            onPressOut={ () => guardarPressForm(false) } 
-            style={styles.btn}
-            underlayColor="#6d5197"
-          >
-            <Text style={[styles.textoSubmit, pressForm? styles.colorTextoBtnPress: styles.colorTextoBtnNormal]}>From</Text>
-          </TouchableHighlight>
-        </View>
-        <View>
-          <TouchableHighlight 
-            onPress={ () => volver() } 
-            onPressIn={ () => guardarPressVolver(true) } 
-            onPressOut={ () => guardarPressVolver(false) } 
-            style={styles.btn}
-            underlayColor="#6d5197"
-          >
-            <Text style={[styles.textoSubmit, pressVolver? styles.colorTextoBtnPress: styles.colorTextoBtnNormal]}>Volver</Text>
-          </TouchableHighlight>
-        </View>
-        
-        
-      </View>
+      </ImageBackground>
+      
+      
     </>
   );
 };
-// <TabComponent  /> linea 86
+
 
 const styles = StyleSheet.create({
   contenedor: {
@@ -166,6 +183,9 @@ const styles = StyleSheet.create({
   colorTextoBtnPress:{
       color: "white",
   },
+  imagen:{
+    flex:1
+  }
 });
 
 export default Ciudades;
