@@ -121,17 +121,6 @@ const Ciudades = ({navigation, route}) => {
           
           <View style={{alignItems:"center"}}>
             <TouchableHighlight 
-              onPress={() => navigation.navigate("Formulario")} 
-              onPressIn={ () => guardarPressForm(true) } 
-              onPressOut={ () => guardarPressForm(false) } 
-              style={styles.btn}
-              underlayColor="#6d5197"
-            >
-              <Text style={[styles.textoSubmit, pressForm? styles.colorTextoBtnPress: styles.colorTextoBtnNormal]}>From</Text>
-            </TouchableHighlight>
-          </View>
-          <View style={{alignItems:"center"}}>
-            <TouchableHighlight 
               onPress={ () => volver() } 
               onPressIn={ () => guardarPressVolver(true) } 
               onPressOut={ () => guardarPressVolver(false) } 
