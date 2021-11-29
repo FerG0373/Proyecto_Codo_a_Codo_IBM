@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { View , Text, StyleSheet, ImageBackground } from "react-native";
-
+import globalStyles from "../styles/globalStyles";
 
 const Matias = () => {
 
@@ -10,7 +10,12 @@ const Matias = () => {
         <>
         <ImageBackground source={imagen} resizeMode="cover" style={style.imagen}>
             <View>
-                <Text style={style.descripcion}>Descripción</Text>
+                <Text style={globalStyles.titulo}> Matias Nicolas Rivero </Text>
+                <Text style={globalStyles.parrafo}>Tengo 25 años, soy de CABA, Argentina. 
+                Soy estudiante de la carrera de Sistemas de la Universidad Nacional de Lanús, 
+                ya me encuentro a pocas materias para terminar. El año pasado fue mi primera vez
+                cursando en Codo A Codo y mi primer curso fue el de Desarrollo Web
+                Full Stack con Python.</Text>
             </View>
         </ImageBackground>
         </>

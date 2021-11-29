@@ -3,7 +3,7 @@ import { StyleSheet } from "react-native";
 //borderBottomWidth: StyleSheet.hairlineWidth una linea debajo del texto
 const globalStyles = StyleSheet.create({
     titulo: {
-        fontSize: 20,
+        fontSize: 24,
         //fontWeight: "bold",
         padding: 4,
         textTransform:"uppercase",
@@ -11,18 +11,18 @@ const globalStyles = StyleSheet.create({
         textDecorationLine:'underline',
         color: "#6d5197",
         textAlign:"center",
-
-        fontFamily:"Poppins-Medium"
+        fontFamily:"Poppins-Bold"
+        
 
     },
     parrafo: {
-        fontSize: 16,
+        fontSize: 18,
         padding: 4,
         marginHorizontal:10,
         textAlign:"justify",
         color:"black",
         marginHorizontal:30,
-        fontFamily:"Merriweather-Regular"
+        fontFamily:"Poppins-Medium"
 
     }
 });
