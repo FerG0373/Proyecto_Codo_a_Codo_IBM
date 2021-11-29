@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 import {useCities} from '../Hook/useCities';
 import {getWeatherForName} from '../Services/getDataWhater';
+import {Icon} from 'react-native-elements';
 
 const ItemList = ({title, id}) => {
   const [consultar, setConsultar] = useState(false);
@@ -65,18 +66,30 @@ const ItemList = ({title, id}) => {
             <Text style={styles.title}>{title}</Text>
           </View>
         </TouchableOpacity>
-        <Pressable style={styles.btn} onPress={handleDelete}>
-          <Text style={styles.btnText}>Eliminar</Text>
-        </Pressable>
+        <View>
+          <Icon
+            type="material-community"
+            name={"trash-can-outline"} 
+            size={50} color={"#6d5197"} 
+            onPress={handleDelete}
+            
+          />
+        </View>
+        
       </View>
     </>
   );
 };
 
+/*<Pressable style={styles.btn} onPress={handleDelete}>
+<Text style={styles.btnText}>Eliminar</Text>
+</Pressable>*/
+
 const styles = StyleSheet.create({
   item: {
-    backgroundColor: '#7A8FBE',
-    width: '70%',
+    //backgroundColor: '#7A8FBE',
+    borderRadius:20,
+    width: '50%',
     height: 50,
     marginVertical: 15,
     marginHorizontal: 10,
@@ -85,9 +98,15 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-around',
+    alignItems:"center",
+    //backgroundColor:"#7A8FBE",
+    borderRadius:40,
+    borderColor:"#6d5197",
+    borderWidth:2,
+    margin:10
   },
   title: {
-    color: '#ffff',
+    color: '#6d5197',
     textAlign: 'center',
     textTransform: 'uppercase',
     fontSize: 16,
@@ -105,6 +124,10 @@ const styles = StyleSheet.create({
     color: '#ffff',
     padding: 5,
     textAlign: 'center',
+  },
+  icon:{
+    backgroundColor:"red",
+    borderRadius:50
   },
 });
 

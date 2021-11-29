@@ -15,6 +15,7 @@ import {useCities} from '../Hook/useCities';
 import {TextInput} from 'react-native-gesture-handler';
 import {getWeatherForName} from '../Services/getDataWhater';
 import {Icon} from 'react-native-elements';
+import { color } from 'react-native-reanimated';
 
 const FormCiudades = ({provincias, setFormModal, formModal}) => {
 
@@ -78,7 +79,8 @@ const FormCiudades = ({provincias, setFormModal, formModal}) => {
         <Picker
           selectedValue={provSelected}
           onValueChange={value => setProvSelected(value)}
-          itemStyle={{height: 120}}>
+          itemStyle={{height: 120, color:"black"}}
+          style={{color:"black"}}>
           <Picker.Item label="--Seleccione--" value="" />
           {provincias.map(prov => {
             return (
@@ -90,7 +92,7 @@ const FormCiudades = ({provincias, setFormModal, formModal}) => {
           <Text style={styles.label}>Ciudades</Text>
           <TextInput
             value={city}
-            style={styles.input}
+            style={{color:"black"}}
             onChangeText={ciudad => setCity(ciudad)}
             placeholder="Ciudad"
             placeholderTextColor="#666"
@@ -133,6 +135,7 @@ const styles = StyleSheet.create({
     textTransform: 'uppercase',
     fontSize: 22,
     marginVertical: 20,
+    color:"#6d5197"
   },
   msgErr: {
     textTransform: 'uppercase',
