@@ -11,7 +11,7 @@ const ListadoCiudades = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    console.log(singleCity);
+    console.log(singleCity.length);
     if (singleCity.length > 0) {
       setData(singleCity);
     } else {
@@ -20,24 +20,27 @@ const ListadoCiudades = () => {
   }, [listOfCitys, singleCity]);
 
   const updateSearch = value => {
-    setSearch(value);
+    if (value !== '') {
+      setSearch(value);
 
-    const termSearching = listOfCitys.filter(city => {
-      let term = city.nombre.toLowerCase();
+      const termSearching = listOfCitys.filter(city => {
+        let term = city.nombre.toLowerCase();
 
-      return term === value.toLowerCase();
-    });
+        return term === value.toLowerCase();
+      });
 
-    if (termSearching.length > 0) {
-      console.log(termSearching);
-      setSingleCity(termSearching);
+      if (termSearching.length > 0) {
+        setSingleCity(termSearching);
+      } else {
+        // mostrarAlerta();
+      }
     } else {
-      // mostrarAlerta();
+      setSingleCity([]);
     }
   };
 
   const onCancelSearch = () => {
-    console.log("entro acac")
+    console.log('entro acac');
     setSingleCity([]);
   };
 
