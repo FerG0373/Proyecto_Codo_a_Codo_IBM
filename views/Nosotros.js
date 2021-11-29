@@ -40,7 +40,7 @@ const Nosotros = ({navigation, route}) => {
           </Text>
 
           <Text style={globalStyles.titulo}>¿Quiénes somos?</Text>
-          <Text style={globalStyles.parrafo}>Acá va quienes somos</Text>
+          <Text style={globalStyles.parrafo}>Esa solucion fue desarrollada por:</Text>
 
           <View style={{height: 150}}>
             <ScrollView horizontal>
@@ -88,6 +88,8 @@ const Nosotros = ({navigation, route}) => {
               </TouchableWithoutFeedback>
             </ScrollView>
           </View>
+          
+          <Text style={globalStyles.parrafo}>Al hacer click en alguno de nosotros, te lleva a nuestra descripcion</Text>
 
           <Text style={globalStyles.titulo}>Documentación UX</Text>
           <Text style={globalStyles.parrafo}>Aca va la documentacion UX</Text>
