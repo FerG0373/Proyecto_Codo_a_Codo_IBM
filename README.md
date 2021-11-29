@@ -109,7 +109,7 @@ npm install
 ```
 
 ```
-npx react-native run-andorid
+npx react-native run-android
 ```
 
 ## Autores ✒️
