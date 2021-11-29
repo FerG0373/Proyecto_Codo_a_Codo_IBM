@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View , Text, StyleSheet, ImageBackground } from "react-native";
+import { View , Text, StyleSheet, ImageBackground, ScrollView } from "react-native";
 import globalStyles from "../styles/globalStyles";
 import { Avatar } from 'react-native-elements';
 
@@ -10,7 +10,7 @@ const Matias = () => {
     return(
         <>
         <ImageBackground source={imagen} resizeMode="cover" style={styles.imagen}>
-            <View>
+            <ScrollView>
                 <View style={styles.avatar}>
                     <Avatar
                         size="xlarge"
@@ -26,7 +26,7 @@ const Matias = () => {
                 ya me encuentro a pocas materias para terminar. El año pasado fue mi primera vez
                 cursando en Codo A Codo y mi primer curso fue el de Desarrollo Web
                 Full Stack con Python.</Text>
-            </View>
+            </ScrollView>
         </ImageBackground>
         </>
     );
