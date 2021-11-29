@@ -1,6 +1,6 @@
 # Proyecto Codo a Codo IBM
-## Aplicacion del Clima
-Curso de desarrollo mobile
+## Wheather app Argentina - Aplicacion de Clima
+Aplicacion desarrollama para el curso de desarrollo mobile con React Native de Codo A Codo y su funcion principal es la de mostrar el clima de las ciudades seleccionadas.
 
 ## Persona Canva 📌
 _La siguiente imagen contiene la Persona Canva que diseñamos para la realizacion de la aplicacion_
@@ -18,7 +18,7 @@ ejecutar)._
 
 ## Pasos para ejecutar el proyecto ⚙️
 
-_Librerias necesarias para la ejecucion de el proyecto_
+### Librerias necesarias para la ejecucion de el proyecto
 
 * [React Navigation](https://reactnavigation.org/docs/getting-started/) - El framework para realizar la navegacion de la aplicacion
 
@@ -41,49 +41,79 @@ Tambien se necesitara instalar:
 ```
 yarn add @react-navigation/bottom-tabs
 ```
---------------------------------------
-# Plantilla que saque
+* [AsyncStorage](https://react-native-async-storage.github.io/async-storage/docs/install/) - Libreria que se encarga de la persistencia de los datos
 
-# Título
-## subtitulos
-### titulo 3
+Comando para instalar el componente:
+```
+yarn add @react-native-async-storage/async-storage
+```
+* [Picker](https://github.com/react-native-picker/picker) - Libreria que se encarga de el picker
 
-_estos son parrafos en italic me parece._
-Estos son parrafos comunes.
-_iconos:_ 🚀 📋 🔧 ⚙️ 🔩 ⌨️ 📦 🛠️ 🖇️ 📖 📌 📄 🎁
+Comando para instalar el componente:
+```
+yarn add @react-native-picker/picker
+```
+* [React Native Elements](https://reactnativeelements.com/docs/) - Es un framework UI
 
-Esto es para **destacar palabras** en el readme.
+Comando para instalar el componente:
+```
+yarn add react-native-elements
+```
+* [React Native Vector Icons](https://reactnativeelements.com/docs/) - Dependencia para que ande el React Native Elements
+
+Comando para instalar el componente:
+```
+yarn add react-native-vector-icons
+```
+* [React Native Maps](https://github.com/react-native-maps/react-native-maps) - Libreria que se encarga de los mapas de Google
+
+Comando para instalar el componente:
+```
+import MapView from 'react-native-maps';
+```
+
+* [React Native Tab View](https://github.com/satya164/react-native-tab-view)
+
+Comando para instalar el componente:
+```
+yarn add react-native-tab-view
+```
+
+* [react-native-pager-view]() - Dependencia de React Native Tab View
+
+Comando para instalar el componente:
+```
+yarn add react-native-pager-view
+```
+
+* [React Native Keyboard Aware Scroll View](https://github.com/APSL/react-native-keyboard-aware-scroll-view)
+
+Comando para instalar el componente:
+```
+yarn add react-native-keyboard-aware-scroll-view
+```
+### Pasos para ejecutar el proyecto de GitHub
+
+
+* Abrir la terminal y escribir:
+```
+git clone https://github.com/FerG0373/Proyecto_Codo_a_Codo_IBM.git
+```
 
 ```
-esto no se si seria para codigo
+npm install -g react-native-cli
 ```
- 
-_Aca es como mencionar cosas que utilizamos del proyecto y que sean linkeables_
-_Menciona las herramientas que utilizaste para crear tu proyecto_
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - El framework web usado
-* [Maven](https://maven.apache.org/) - Manejador de dependencias
-* [ROME](https://rometools.github.io/rome/) - Usado para generar RSS
+```
+npm install
+```
 
- _Aca hace linkeable un parrafo de texto_
-
-Usamos [SemVer](http://semver.org/) para el versionado. Para todas las versiones disponibles, mira los [tags en este repositorio](https://github.com/tu/proyecto/tags).
+```
+npx react-native run-android
+```
 
 ## Autores ✒️
 
-_Menciona a todos aquellos que ayudaron a levantar el proyecto desde sus inicios_
-
-* **Andrés Villanueva** - *Trabajo Inicial* - [villanuevand](https://github.com/villanuevand)
-* **Fulanito Detal** - *Documentación* - [fulanitodetal](#fulanito-de-tal)
-
-También puedes mirar la lista de todos los [contribuyentes](https://github.com/your/project/contributors) quíenes han participado en este proyecto. 
-
- _y aca mas relleno_
-
-* Comenta a otros sobre este proyecto 📢
-* Invita una cerveza 🍺 o un café ☕ a alguien del equipo. 
-* Da las gracias públicamente 🤓.
-* etc.
-
----
-⌨️ con ❤️ por [Villanuevand](https://github.com/Villanuevand) 😊
+* **Vanina Eliana Armida** - *Desarrollo* - [vaniar86](https://github.com/vaniar86)
+* **Fernando Daniel González** - *Desarrollo* - [FerG0373](https://github.com/FerG0373)
+* **Matias Nicolas Rivero** - *Desarrollo* - [Mathyz1](https://github.com/Mathyz1)
