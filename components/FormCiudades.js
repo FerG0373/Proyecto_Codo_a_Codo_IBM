@@ -11,8 +11,6 @@ import {
   View,
 } from 'react-native';
 import {Picker} from '@react-native-picker/picker';
-import {getAllState} from '../Services/getDataCity';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useCities} from '../Hook/useCities';
 import {TextInput} from 'react-native-gesture-handler';
 import {getWeatherForName} from '../Services/getDataWhater';

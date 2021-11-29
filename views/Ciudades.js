@@ -15,8 +15,6 @@ import {
 import * as getDataState from '../Services/getDataState';
 import FormCiudades from '../components/FormCiudades';
 import TabComponent from '../components/TabComponent';
-import {SearchBar} from 'react-native-elements';
-import {useCities} from '../Hook/useCities';
 
 import { Overlay } from "react-native-elements";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
@@ -34,8 +32,6 @@ const Ciudades = ({navigation, route}) => {
   };
   const [formModal, setFormModal] = useState(false);
   const [provincias, setProvincias] = useState([]);
-  const [search, setSearch] = useState(null);
-  // const {setTerm} = useCities();
 
   const getState = () => {
     getDataState
@@ -45,22 +41,10 @@ const Ciudades = ({navigation, route}) => {
       })
       .catch(err => console.log(err));
   };
-  
-  const updateSearch = value => {
-    setSearch(value);
-  };
 
   useEffect(() => {
     getState();
   }, []);
-
-  const mostrarAlerta = () => {
-    Alert.alert(
-      'Error',
-      'No hay resultados, la ciudad que buscas no se encuentra en el listado',
-      [{text: 'OK '}],
-    );
-  };
 
   return (
     <>
