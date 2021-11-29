@@ -36,6 +36,11 @@ const ListadoCiudades = () => {
     }
   };
 
+  const onCancelSearch = () => {
+    console.log("entro acac")
+    setSingleCity([]);
+  };
+
   const mostrarAlerta = () => {
     Alert.alert(
       'Error',
@@ -48,7 +53,11 @@ const ListadoCiudades = () => {
   return (
     <>
       <View>
-        <GlobalFilter search={search} updateSearch={updateSearch} />
+        <GlobalFilter
+          search={search}
+          updateSearch={updateSearch}
+          onCancelSearch={onCancelSearch}
+        />
         <FlatList
           data={data}
           renderItem={renderItem}

@@ -1,15 +1,9 @@
 /* eslint-disable prettier/prettier */
 import React from 'react';
-import {Alert, View} from 'react-native';
+import {View} from 'react-native';
 import {SearchBar} from 'react-native-elements';
 
-const GlobalFilter = ({updateSearch, search}) => {
-  
-
-  
-
- 
-
+const GlobalFilter = ({updateSearch, search, onCancelSearch}) => {
   return (
     <View>
       <SearchBar
@@ -17,6 +11,7 @@ const GlobalFilter = ({updateSearch, search}) => {
         placeholder="Buscar Ciudad"
         onChangeText={text => updateSearch(text)}
         value={search}
+        onClear={onCancelSearch}
       />
     </View>
   );
