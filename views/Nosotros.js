@@ -36,7 +36,6 @@ const Nosotros = ( {navigation, route} ) => {
                                     rounded
                                     title="VA"
                                     containerStyle={{backgroundColor:"red"}}
-                                    //source={require("../assets/img/clima/cloud-moon.png")} 
                                 /> 
                                 <Text style={{color:"black", textAlign:"center"}}>Vanina{"\n"}Eliana{"\n"}Armida</Text>
                             </View>

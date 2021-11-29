@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { View , Text, StyleSheet, ImageBackground } from "react-native";
-
+import globalStyles from "../styles/globalStyles";
+import { Avatar } from 'react-native-elements';
 
 const Vanina = () => {
 
@@ -8,16 +9,26 @@ const Vanina = () => {
 
     return(
         <>
-        <ImageBackground source={imagen} resizeMode="cover" style={style.imagen}>
+        <ImageBackground source={imagen} resizeMode="cover" style={styles.imagen}>
             <View>
-                <Text style={style.descripcion}>Descripción</Text>
+                <View style={styles.avatar}>
+                    <Avatar
+                        size="xlarge"
+                        rounded
+                        title="VA"
+                        containerStyle={{backgroundColor:"red"}}
+                    /> 
+                </View>
+                
+                <Text style={globalStyles.titulo}> Descripcion </Text>
+                <Text style={globalStyles.parrafo}>tu descripcion...</Text>
             </View>
         </ImageBackground>
         </>
     );
 };
 
-const style = StyleSheet.create({
+const styles = StyleSheet.create({
     descripcion: {
         marginTop: 70,
         fontSize: 20,
@@ -26,6 +37,11 @@ const style = StyleSheet.create({
     imagen:{
         flex: 1,
     },
+    avatar:{
+        alignItems:"center",
+        marginTop:30,
+        marginBottom:10
+    }
 });
 
 export default Vanina;
