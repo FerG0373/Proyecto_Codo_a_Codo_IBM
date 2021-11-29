@@ -1,6 +1,6 @@
 # Proyecto Codo a Codo IBM
-## Aplicacion del Clima
-Curso de desarrollo mobile
+## Wheather app Argentina - Aplicacion de Clima
+Aplicacion desarrollama para el curso de desarrollo mobile con React Native de Codo A Codo y su funcion principal es la de mostrar el clima de las ciudades seleccionadas.
 
 ## Persona Canva 📌
 _La siguiente imagen contiene la Persona Canva que diseñamos para la realizacion de la aplicacion_
