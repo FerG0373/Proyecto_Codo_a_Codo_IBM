@@ -17,7 +17,7 @@ export default function Clima ({route, navigation}) {
     
     //le asigna una imagen de fondo segun el clima
     const imagenFondo = () => {
-        var imagen = require("../assets/img/fondo.png");
+        var imagen = require("../assets/img/despejado1.png");
 
         //le asigna una imagen de fondo segun el clima
         if(id>=200 && id<300){
@@ -37,7 +37,7 @@ export default function Clima ({route, navigation}) {
             imagen = require("../assets/img/neblina1.png");
         }else if(id===800){
             //imagen despejado
-            imagen = require("../assets/img/fondo.png");
+            imagen = require("../assets/img/despejado1.png");
         }else if(id>800 && id<900){
             //imagen nublado
             imagen = require("../assets/img/nubes5.png");

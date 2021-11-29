@@ -7,15 +7,21 @@ const globalStyles = StyleSheet.create({
         fontWeight: "bold",
         padding: 4,
         textTransform:"uppercase",
-        //color: "white",
-        borderBottomColor: "#6d5197",
-        borderBottomWidth: StyleSheet.hairlineWidth,
-        color: "#6d5197"
+        
+        textDecorationLine:'underline',
+        color: "#6d5197",
+        textAlign:"center"
+
     },
     parrafo: {
         fontSize: 16,
         padding: 4,
         marginHorizontal:10,
+        textAlign:"justify",
+        color:"black",
+        marginHorizontal:30,
+
+
     }
 });
 
