@@ -19,7 +19,7 @@ const Inicio = ({navigation}) => {
         <>  
         <ImageBackground source={imagen} resizeMode="cover" style={styles.imagen}>
             <ScrollView style={styles.contenedor}>
-                <Text style={styles.nombreAplicacion}>App Clima</Text>
+                <Text style={styles.nombreAplicacion}>Wheather app {"\n"} Argentina</Text>
                 <Text style={[globalStyles.titulo]}>Descripcion</Text>
                 <Text style={[globalStyles.parrafo]}>Nuestra aplicacion se encarga de mostrar el clima actual de las ciudades que elijas
                 de Argentina, consulta con la API de OpenWeather y te muestra la temperatura actual, la temperatura maxima y la minima,
@@ -49,9 +49,12 @@ const styles = StyleSheet.create({
         
     },
     nombreAplicacion:{
-        fontSize:30,
-        marginTop:50,
-        marginBottom:50
+        fontSize:28,
+        marginTop:70,
+        marginBottom:20,
+        fontFamily:"Poppins-Black",
+        textAlign:"center",
+        color:"#6d5197"
     },
     imagen:{
         flex:1

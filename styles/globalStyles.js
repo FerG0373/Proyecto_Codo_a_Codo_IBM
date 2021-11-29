@@ -4,13 +4,15 @@ import { StyleSheet } from "react-native";
 const globalStyles = StyleSheet.create({
     titulo: {
         fontSize: 20,
-        fontWeight: "bold",
+        //fontWeight: "bold",
         padding: 4,
         textTransform:"uppercase",
         
         textDecorationLine:'underline',
         color: "#6d5197",
-        textAlign:"center"
+        textAlign:"center",
+
+        fontFamily:"Poppins-Medium"
 
     },
     parrafo: {
@@ -20,7 +22,7 @@ const globalStyles = StyleSheet.create({
         textAlign:"justify",
         color:"black",
         marginHorizontal:30,
-
+        fontFamily:"Merriweather-Regular"
 
     }
 });
