@@ -20,13 +20,11 @@ import {useCities} from '../Hook/useCities';
 
 import { Overlay } from "react-native-elements";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import Gradiente from '../components/Gradiente';
 
 
 const Ciudades = ({navigation, route}) => {
 
   const [pressVolver, guardarPressVolver] = useState(false);
-  const [pressForm, guardarPressForm] = useState(false);
   const [pressAñadir, guardarPressAñadir] = useState(false);
 
   const imagen = require("../assets/img/fondo.png");
@@ -47,6 +45,7 @@ const Ciudades = ({navigation, route}) => {
       })
       .catch(err => console.log(err));
   };
+  
   const updateSearch = value => {
     setSearch(value);
   };
@@ -139,23 +138,6 @@ const Ciudades = ({navigation, route}) => {
   );
 };
 
-
-
-/*<Modal
-              animationType="slide"
-              transparent={true}
-              visible={formModal}
-              backdrop
-              onRequestClose={() => {
-                //   Alert.alert('Modal has been closed.');
-                setFormModal(!formModal);
-              }}>
-              <FormCiudades
-                provincias={provincias}
-                setFormModal={setFormModal}
-                formModal={formModal}
-              />
-              </Modal>*/
 const styles = StyleSheet.create({
   contenedor: {
     flex: 1,
