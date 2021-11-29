@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React from 'react';
 import { Text, StyleSheet, View, Button, Dimensions, ImageBackground, ScrollView } from 'react-native';
 import globalStyles from '../styles/globalStyles';
