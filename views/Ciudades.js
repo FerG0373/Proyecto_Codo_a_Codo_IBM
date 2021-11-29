@@ -29,7 +29,7 @@ const Ciudades = ({navigation, route}) => {
   const [pressForm, guardarPressForm] = useState(false);
   const [pressAñadir, guardarPressAñadir] = useState(false);
 
-  const imagen = require("../assets/img/fondo2.png");
+  const imagen = require("../assets/img/fondo.png");
   
   const volver = () => {
     navigation.navigate('Inicio');
