@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Clima Argentina</string>
+    <string name="app_name">Wheather app Argentina</string>
     <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyCBIZ3DC2TYrvr3-AqHgFZmV1OTVNNbgvw</string>
 
 </resources>
