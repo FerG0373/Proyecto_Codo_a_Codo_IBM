@@ -1,172 +1,182 @@
-/* eslint-disable prettier/prettier */
-import React, {useEffect, useState} from 'react';
-import {View, Text, StyleSheet, Image, Dimensions} from 'react-native';
-import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
+import React, {useEffect, useState} from "react";
+import { View, Text, StyleSheet, Image, Dimensions, ImageBackground, ScrollView } from "react-native";
+import MapView, { PROVIDER_GOOGLE, Marker } from "react-native-maps";
+import IconClima from "../components/IconClima";
+import NameClima from "../components/NameClima";
 
-export default function Clima({route, navigation}) {
-  //grados Kelvin para centigrados
-  const kelvin = 273.15;
-  const [bgcolor, guardarBgcolor] = useState('rgb(71, 149, 212)');
 
-  console.log(route);
+export default function Clima ({route, navigation}) {
+    
+    //grados Kelvin para centigrados
+    const kelvin = 273.15;
 
-  const {resultado} = route.params;
-  const {name, main, coord} = resultado;
-
-  useEffect(() => {
+    const { resultado } = route.params;
+    const {name, main, coord} = resultado;
+    const {id} = resultado.weather[0];
     if (!name) return null;
-    //modificar los colores de fondo segun la temperatura
-    //const kelvin = 273.15;
-    //const {main} = resultado;
-    const actual = main.temp - kelvin;
+    
+    //le asigna una imagen de fondo segun el clima
+    const imagenFondo = () => {
+        var imagen = require("../assets/img/despejado1.png");
 
-    if (actual < 10) {
-      guardarBgcolor('rgb(105, 108, 149)');
-    } else if (actual >= 10 && actual < 25) {
-      guardarBgcolor('rgb(71, 149, 212)');
-    } else {
-      guardarBgcolor('rgb(178, 28, 61)');
-    }
-  }, [main, name]);
+        //le asigna una imagen de fondo segun el clima
+        if(id>=200 && id<300){
+            //imagen tormenta electrica
+            imagen = require("../assets/img/electrica2.png");
+        }else if(id>=300 && id<400){
+            //imagen llovizna
+            imagen = require("../assets/img/lluvia3.png");
+        }else if(id>=500 && id<600){
+            //imagen lluvia
+            imagen = require("../assets/img/lluvia4.png");
+        }else if(id>=600 && id<700){
+            //imagen nieve
+            imagen = require("../assets/img/nieve1.png");
+        }else if(id>=700 && id<800){
+            //imagen neblina
+            imagen = require("../assets/img/neblina1.png");
+        }else if(id===800){
+            //imagen despejado
+            imagen = require("../assets/img/despejado1.png");
+        }else if(id>800 && id<900){
+            //imagen nublado
+            imagen = require("../assets/img/nubes5.png");
+        }else{
+            imagen = require("../assets/img/fondo.png");
+        }
+        return imagen;
+    };
+   
 
-  const nombreClima = () => {
-    var nombreClimaActual = '';
+    /* En el return se renderiza toda la vista de los datos del clima */
+    return (
+        <ImageBackground source={imagenFondo()} resizeMode="cover" style={styles.imagen}>
+            <ScrollView style={[styles.clima/*, bgColorApp*/]}>
 
-    if (resultado.weather[0].id >= 200 && resultado.weather[0].id < 300) {
-      nombreClimaActual = 'tormenta electrica';
-    } else if (
-      resultado.weather[0].id >= 300 &&
-      resultado.weather[0].id < 400
-    ) {
-      nombreClimaActual = 'llovizna';
-    } else if (
-      resultado.weather[0].id >= 500 &&
-      resultado.weather[0].id < 600
-    ) {
-      nombreClimaActual = 'lluvia';
-    } else if (
-      resultado.weather[0].id >= 600 &&
-      resultado.weather[0].id < 700
-    ) {
-      nombreClimaActual = 'nieve';
-    } else if (
-      resultado.weather[0].id >= 700 &&
-      resultado.weather[0].id < 800
-    ) {
-      nombreClimaActual = 'neblina';
-    } else if (resultado.weather[0].id === 800) {
-      nombreClimaActual = 'despejado';
-    } else if (resultado.weather[0].id > 800 && resultado.weather[0].id < 900) {
-      nombreClimaActual = 'nublado';
-    } else {
-      nombreClimaActual = 'sin descripcion';
-    }
-    return nombreClimaActual;
-  };
+                <Text style={styles.titulo}>Ciudad de</Text>
+                <Text style={styles.titulo}>{ name }</Text>
 
-  const imagenClima = () => {
-    let imagenClimaActual;
-    const icon = resultado.weather[0].icon;
+                <View style={{alignItems:"center"}}>
+                    <IconClima
+                        icon={resultado.weather[0].icon}
+                    />
+                    <NameClima
+                        estilo={styles.texto}
+                        id={resultado.weather[0].id}
+                    />
 
-    if (icon === '01d') {
-      imagenClimaActual = require('../assets/img/clima/sun.png');
-    } else if (icon === '01n') {
-      imagenClimaActual = require('../assets/img/clima/moon.png');
-    } else if (icon === '02d') {
-      imagenClimaActual = require('../assets/img/clima/cloud-sun.png');
-    } else if (icon === '02n') {
-      imagenClimaActual = require('../assets/img/clima/cloud.png');
-    } else if (icon === '03d' || icon === '03n') {
-      imagenClimaActual = require('../assets/img/clima/cloud.png');
-    } else if (icon === '04n' || icon === '04d') {
-      imagenClimaActual = require('../assets/img/clima/cloud.png');
-    } else if (icon === '09n' || icon === '09d') {
-      imagenClimaActual = require('../assets/img/clima/rain-alt.png');
-    } else if (icon === '10d') {
-      imagenClimaActual = require('../assets/img/clima/rain-alt-sun.png');
-    } else if (icon === '10n') {
-      imagenClimaActual = require('../assets/img/clima/rain-alt-moon.png');
-    } else if (icon === '11n' || icon === '11d') {
-      imagenClimaActual = require('../assets/img/clima/light.png');
-    } else if (icon === '13n' || icon === '13d') {
-      imagenClimaActual = require('../assets/img/clima/snow-alt.png');
-    } else if (icon === '50n' || icon === '50d') {
-      imagenClimaActual = require('../assets/img/clima/fog.png');
-    } else {
-      imagenClimaActual = 'sin descripcion';
-    }
-    console.log(imagenClimaActual);
-    return imagenClimaActual;
-  };
+                </View>
+                <Text style={[styles.texto, styles.actual]}>
+                    {(main.temp - kelvin).toFixed(1) }
+                    <Text style={styles.temperatura}>
+                        &#x2103;
+                    </Text>
+                    
+                </Text>
 
-  const bgColorApp = {
-    backgroundColor: bgcolor,
-  };
+                <View style={styles.temperaturas}>
+                    <Text style={styles.texto}>
+                        <Text style={styles.temperatura}>
+                            Min { (main.temp_min - kelvin).toFixed(1) } &#x2103; /
+                        Max { (main.temp_max - kelvin).toFixed(1) } &#x2103;
+                        </Text>
+                    </Text>
 
-  /* En el return se renderiza toda la vista de los datos del clima */
-  return (
-    <View style={[styles.clima, bgColorApp]}>
-      <Text style={styles.texto}>Ciudad de {name}</Text>
-      <Text style={[styles.texto, styles.actual]}>
-        {(main.temp - kelvin).toFixed(1)}
-        <Text style={styles.temperatura}>&#x2103;</Text>
+                    <Text style={styles.texto}>S. Termica {" "}
+                        <Text style={styles.temperatura}>
+                            { (main.feels_like - kelvin).toFixed(1) } &#x2103;
+                        </Text>
+                    </Text>
 
-        <Image style={{tintColor: '#FFF'}} source={imagenClima()} />
-      </Text>
+                    <Text style={styles.texto}>Humedad {" "}
+                        <Text style={styles.temperatura}>
+                            { parseInt(main.humidity) }%
+                        </Text>
+                    </Text>
+                </View>
+            </ScrollView>
+        </ImageBackground>
+        
+        
+    );
+};
 
-      <View style={styles.temperaturas}>
-        <Text style={styles.texto}>{nombreClima()}</Text>
-
-        <Text style={styles.texto}>
-          <Text style={styles.temperatura}>
-            Min {(main.temp_min - kelvin).toFixed(1)} &#x2103; / Max{' '}
-            {(main.temp_max - kelvin).toFixed(1)} &#x2103;
-          </Text>
-        </Text>
-
-        <Text style={styles.texto}>
-          S. Termica{' '}
-          <Text style={styles.temperatura}>
-            {(main.feels_like - kelvin).toFixed(1)} &#x2103;
-          </Text>
-        </Text>
-
-        <Text style={styles.texto}>
-          Humedad{' '}
-          <Text style={styles.temperatura}>{parseInt(main.humidity)}%</Text>
-        </Text>
-      </View>
-    </View>
-  );
-}
+/* Mapa que se saco de aca
+            <MapView 
+                style={styles.map}
+                provider={PROVIDER_GOOGLE}
+                initialRegion={{
+                latitude: coord.lat,
+                longitude: coord.lon,
+                latitudeDelta: 0.0922,
+                longitudeDelta: 0.0421,
+                }}
+            >
+                <Marker
+                    coordinate={{ latitude : coord.lat , longitude : coord.lon }}
+                    title={ name }
+                    description={ (main.temp - kelvin).toFixed(1) }
+                />
+              
+            </MapView>
+         */
 
 const styles = StyleSheet.create({
-  clima: {
-    marginBottom: 20,
-    alignItems: 'center',
-  },
-  texto: {
-    color: '#FFF',
-    fontSize: 20,
-    textAlign: 'center',
-    marginRight: 20,
-  },
-  actual: {
-    fontSize: 80,
-    marginRight: 0,
-    fontWeight: 'bold',
-  },
-  temperatura: {
-    fontSize: 24,
-    fontWeight: 'normal',
-  },
-  temperaturas: {
-    /*flexDirection: "row",
+    clima:{
+        marginTop:35,
+        //marginBottom: 20,
+        //alignItems:"center",
+    },
+    titulo:{
+        color:"#FFF",
+        fontSize:26,
+        textAlign: "center",
+        textShadowColor: '#000',
+        textShadowOffset: { width: 2, height: 2 },
+        textShadowRadius: 2,
+        //textShadowColor:"black",
+        textTransform:"uppercase",
+        fontWeight: "bold",
+    },
+    texto:{
+        color:"#FFF",
+        fontSize:20,
+        textAlign: "center",
+        marginRight: 20,
+        textShadowColor: '#000',
+        textShadowOffset: { width: 2, height: 2 },
+        textShadowRadius: 2,
+        textTransform:"uppercase",
+        fontWeight: "bold",
+
+    },
+    actual:{   
+        fontSize:80,
+        marginRight: 0,
+        fontWeight: "bold",
+    },
+    temperatura:{
+        fontSize: 24,
+        fontWeight: "normal",
+    },
+    temperaturas:{
+        /*flexDirection: "row",
         justifyContent: "center",*/
-    textAlign: 'center',
-  },
-  map: {
-    width: Dimensions.get('window').width - 60,
-    height: 300,
-  },
+        textAlign: "center",
+    },
+    map:{
+        width:Dimensions.get('window').width - 60,
+        height:300,
+    },
+    imagen:{
+        flex: 1,
+        //justifyContent: "center"
+    },
+    imagenClima:{
+        marginTop:20,
+        tintColor:"#FFF",
+        borderColor:"black",
+        width:220,
+        height:220,
+    },
 });

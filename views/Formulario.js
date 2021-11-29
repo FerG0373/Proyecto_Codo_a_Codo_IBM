@@ -158,6 +158,7 @@ const styles = StyleSheet.create({
         padding:10,
         height: 50,
         backgroundColor: "#FFF",
+        color:"#000",
         fontSize: 20,
         marginBottom: 20,
         textAlign: "center",

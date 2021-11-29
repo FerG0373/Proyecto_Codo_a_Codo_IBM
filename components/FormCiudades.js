@@ -14,12 +14,16 @@ import {Picker} from '@react-native-picker/picker';
 import {useCities} from '../Hook/useCities';
 import {TextInput} from 'react-native-gesture-handler';
 import {getWeatherForName} from '../Services/getDataWhater';
+import {Icon} from 'react-native-elements';
 
 const FormCiudades = ({provincias, setFormModal, formModal}) => {
+
   const [provSelected, setProvSelected] = useState(null);
   const [city, setCity] = useState();
   const [error, setError] = useState(null);
   const {listOfCitys, setListOfCitys, storeData} = useCities();
+
+  const [pressGuardar, guardarPressGuardar] = useState(false);
 
   const ocultarTeclado = () => {
     Keyboard.dismiss();
@@ -60,11 +64,15 @@ const FormCiudades = ({provincias, setFormModal, formModal}) => {
   return (
     <TouchableWithoutFeedback onPress={() => ocultarTeclado()}>
       <View style={styles.modalView}>
-        <Pressable
-          style={[styles.button, styles.buttonClose]}
-          onPress={() => setFormModal(!formModal)}>
-          <Text style={styles.textStyle}>X</Text>
-        </Pressable>
+        <View style={{marginStart: 270}}>
+          <Icon 
+            type="material-community"
+            name={"close-thick"} 
+            size={22} color={"black"} 
+            onPress={() => setFormModal(!formModal)}
+          />
+        </View>
+      
         {error && <Text style={styles.msgErr}>{error}</Text>}
         <Text style={styles.label}>Provincias</Text>
         <Picker
@@ -88,31 +96,38 @@ const FormCiudades = ({provincias, setFormModal, formModal}) => {
             placeholderTextColor="#666"
           />
         </View>
-        <View>
-          <TouchableHighlight
-            style={styles.btnGuardar}
-            onPress={() => guardarCiudad()}>
-            <Text style={styles.txtBtn}>Guardar Ciudad</Text>
+
+        <View style={{alignItems:"center"}}>
+          <TouchableHighlight 
+            onPress={ () => guardarCiudad() } 
+            onPressIn={ () => guardarPressGuardar(true) } 
+            onPressOut={ () => guardarPressGuardar(false) } 
+            style={styles.btn}
+            underlayColor="#6d5197"
+          >
+            <Text style={[styles.textoSubmit, pressGuardar? styles.colorTextoBtnPress: styles.colorTextoBtnNormal]}>Guardar Ciudad</Text>
           </TouchableHighlight>
         </View>
+
       </View>
     </TouchableWithoutFeedback>
   );
 };
 const styles = StyleSheet.create({
   modalView: {
-    margin: 10,
-    backgroundColor: '#ffff',
-    borderRadius: 20,
-    padding: 35,
-    shadowColor: '#000',
+    //marginTop:"45%",
+    //margin: 10,
+    //backgroundColor: '#ffff',
+    //borderRadius: 20,
+    padding: 10,
+    /*shadowColor: '#000',
     shadowOffset: {
       width: 0,
       height: 2,
     },
     shadowOpacity: 0.25,
     shadowRadius: 4,
-    elevation: 5,
+    elevation: 5,*/
   },
   label: {
     textTransform: 'uppercase',
@@ -154,6 +169,26 @@ const styles = StyleSheet.create({
     color: 'white',
     fontWeight: 'bold',
     textAlign: 'center',
+  },
+  btn:{
+    //backgroundColor:"#1f2366",
+    padding: 12,
+    width:150,
+    marginVertical: 10,
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: '#6d5197',
+    backgroundColor: "transparent"
+  },
+  textoSubmit: {
+      fontWeight: "bold",
+      textAlign: "center",
+  },
+  colorTextoBtnNormal:{
+      color: "#6d5197",
+  },
+  colorTextoBtnPress:{
+      color: "white",
   },
 });
 export default FormCiudades;
