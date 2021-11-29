@@ -65,29 +65,32 @@ Comando para instalar el componente:
 ```
 yarn add react-native-vector-icons
 ```
-* [react-native-maps]() - Libreria que se encarga de
+* [React Native Maps](https://github.com/react-native-maps/react-native-maps) - Libreria que se encarga de los mapas de Google
 
 Comando para instalar el componente:
 ```
-yarn add
+import MapView from 'react-native-maps';
 ```
-* [react-native-pager-view]() - Libreria que se encarga de
 
-Comando para instalar el componente:
-```
-yarn add
-```
-* [react-native-tab-view](https://github.com/satya164/react-native-tab-view)
+* [React Native Tab View](https://github.com/satya164/react-native-tab-view)
 
 Comando para instalar el componente:
 ```
 yarn add react-native-tab-view
 ```
-* [React Native Keyboard Aware Scroll View](https://github.com/satya164/react-native-tab-view)
+
+* [react-native-pager-view]() - Dependencia de React Native Tab View
 
 Comando para instalar el componente:
 ```
-yarn add
+yarn add react-native-pager-view
+```
+
+* [React Native Keyboard Aware Scroll View](https://github.com/APSL/react-native-keyboard-aware-scroll-view)
+
+Comando para instalar el componente:
+```
+yarn add react-native-keyboard-aware-scroll-view
 ```
 ### Pasos para ejecutar el proyecto de GitHub
 
