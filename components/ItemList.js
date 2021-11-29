@@ -10,23 +10,13 @@ import {
   View,
 } from 'react-native';
 import {useCities} from '../Hook/useCities';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import {getWeatherForName} from '../Services/getDataWhater';
 
 const ItemList = ({title, id}) => {
   const [consultar, setConsultar] = useState(false);
   const [resultado, setResultado] = useState({});
   const [busqueda, setBusqueda] = useState({});
-  const {listOfCitys, eliminarDelStorage} = useCities();
-  const clearAll = async () => {
-    try {
-      await AsyncStorage.clear();
-    } catch (e) {
-      // clear error
-    }
-
-    console.log('Done.');
-  };
+  const {listOfCitys, eliminarDelStorage, setListOfCitys} = useCities();
 
   const navigation = useNavigation();
 

@@ -29,44 +29,37 @@ const Nosotros = ( {navigation, route} ) => {
 
                 <View style={{height:150}}>
                     <ScrollView horizontal>
-                        <TouchableWithoutFeedback style={styles.nosotros} onPress={ () => navigation.navigate('Vanina')}>
-                            <View>
+                        <TouchableWithoutFeedback onPress={ () => navigation.navigate('Vanina')}>
+                            <View  style={styles.nosotros}>
                                 <Avatar
                                     size="large"
                                     rounded
                                     title="VA"
                                     containerStyle={{backgroundColor:"red"}}
-                                    //source={require("../assets/img/clima/cloud-moon.png")} 
                                 /> 
-                                <Text>Vanina</Text>
-                                <Text>Eliana</Text>
-                                <Text>Armida</Text>
+                                <Text style={{color:"black", textAlign:"center"}}>Vanina{"\n"}Eliana{"\n"}Armida</Text>
                             </View>
                         </TouchableWithoutFeedback>
-                        <TouchableWithoutFeedback style={styles.nosotros} onPress={ () => navigation.navigate('Fernando')}>
-                            <View>
+                        <TouchableWithoutFeedback onPress={ () => navigation.navigate('Fernando')}>
+                            <View  style={styles.nosotros}>
                                 <Avatar
                                     size="large"
                                     rounded
                                     title="FG"
                                     containerStyle={{backgroundColor:"green"}}
                                 /> 
-                                <Text>Fernando</Text>
-                                <Text>Daniel</Text>
-                                <Text>González</Text>
+                                <Text style={{color:"black", textAlign:"center"}}>Fernando{"\n"}Daniel{"\n"}González</Text>
                             </View>
                         </TouchableWithoutFeedback>
-                        <TouchableWithoutFeedback style={styles.nosotros} onPress={ () => navigation.navigate('Matias')}>
-                            <View>
+                        <TouchableWithoutFeedback onPress={ () => navigation.navigate('Matias')}>
+                            <View style={styles.nosotros}>
                                 <Avatar
                                     size="large"
                                     rounded
                                     title="MR"
                                     containerStyle={{backgroundColor:"blue"}}
                                 /> 
-                                <Text>Matías</Text>
-                                <Text>Nicolás</Text>
-                                <Text>Rivero</Text> 
+                                <Text style={{color:"black", textAlign:"center"}}>Matías{"\n"}Nicolás{"\n"}Rivero</Text> 
                             </View>
                         </TouchableWithoutFeedback>
                     </ScrollView>

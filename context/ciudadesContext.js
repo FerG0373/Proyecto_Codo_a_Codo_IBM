@@ -4,8 +4,10 @@ const Context = createContext({});
 
 export const CitiesContextProvider = ({children}) => {
   const [listOfCitys, setListOfCitys] = useState([]);
+  const [singleCity, setSingleCity] = useState([]);
+  
   return (
-    <Context.Provider value={[listOfCitys, setListOfCitys]}>
+    <Context.Provider value={[listOfCitys, setListOfCitys,singleCity, setSingleCity]}>
       {children}
     </Context.Provider>
   );
