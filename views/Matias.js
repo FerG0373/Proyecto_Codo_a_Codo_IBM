@@ -9,9 +9,9 @@ const Matias = () => {
     return(
         <>
         <ImageBackground source={imagen} resizeMode="cover" style={style.imagen}>
-            <View>
-                <Text style={style.descripcion}>Descripción</Text>
-            </View>
+        <View>
+            <Text style={style.descripcion}>Descripción</Text>
+        </View>
         </ImageBackground>
         </>
     );
@@ -22,6 +22,7 @@ const style = StyleSheet.create({
         marginTop: 70,
         fontSize: 20,
         paddingHorizontal: 15,
+        fontWeight: 'bold',
     },
     imagen:{
         flex: 1,

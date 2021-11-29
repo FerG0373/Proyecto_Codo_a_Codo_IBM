@@ -24,6 +24,7 @@ const style = StyleSheet.create({
         marginTop: 70,
         fontSize: 20,
         paddingHorizontal: 15,
+        fontWeight: 'bold',
     },
     imagen:{
         flex: 1,
