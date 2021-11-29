@@ -94,7 +94,23 @@ yarn add react-native-keyboard-aware-scroll-view
 ```
 ### Pasos para ejecutar el proyecto de GitHub
 
-_Aca van los comandos para clonar y luego ejecutar_
+
+* Abrir la terminal y escribir:
+```
+git clone https://github.com/FerG0373/Proyecto_Codo_a_Codo_IBM.git
+```
+
+```
+npm install -g react-native-cli
+```
+
+```
+npm install
+```
+
+```
+npx react-native run-andorid
+```
 
 ## Autores ✒️
 
