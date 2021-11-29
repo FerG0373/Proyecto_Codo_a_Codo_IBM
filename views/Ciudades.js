@@ -7,14 +7,11 @@ import {
   TouchableHighlight,
   Text,
   Modal,
-  Button,
-  Alert,
+  Button
 } from 'react-native';
 import * as getDataState from '../Services/getDataState';
 import FormCiudades from '../components/FormCiudades';
 import TabComponent from '../components/TabComponent';
-import {SearchBar} from 'react-native-elements';
-import {useCities} from '../Hook/useCities';
 
 import Gradiente from '../components/Gradiente';
 
@@ -24,8 +21,6 @@ const Ciudades = ({navigation, route}) => {
   };
   const [formModal, setFormModal] = useState(false);
   const [provincias, setProvincias] = useState([]);
-  const [search, setSearch] = useState(null);
-  // const {setTerm} = useCities();
 
   const getState = () => {
     getDataState
@@ -35,35 +30,15 @@ const Ciudades = ({navigation, route}) => {
       })
       .catch(err => console.log(err));
   };
-  const updateSearch = value => {
-    setSearch(value);
-  };
 
   useEffect(() => {
     getState();
   }, []);
 
-  const mostrarAlerta = () => {
-    Alert.alert(
-      'Error',
-      'No hay resultados, la ciudad que buscas no se encuentra en el listado',
-      [{text: 'OK '}],
-    );
-  };
-
   return (
     <>
       <Gradiente colorGradiente={['#97A7B7', '#B98A90', '#745B83']} />
       <View style={styles.contenedor}>
-        <View>
-          <SearchBar
-            lightTheme
-            placeholder="Buscar Ciudad"
-            onChangeText={text => updateSearch(text)}
-            value={search}
-          />
-          
-        </View>
         <View>
           <TouchableHighlight
             style={styles.button}

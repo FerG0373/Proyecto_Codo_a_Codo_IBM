@@ -6,7 +6,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 export const useCities = () => {
   const [listOfCitys, setListOfCitys] = useContext(ciudadesContext);
   const [loading, setLoadig] = useState(false);
-
+  const [buscar, setBuscar] = useState(false);
+  const [singleCity, setSingleCity] = useState([]);
 
   useEffect(() => {
     const getData = async () => {
@@ -27,6 +28,7 @@ export const useCities = () => {
   const eliminarDelStorage = id => {
     const ciudadesFiltradas = listOfCitys.filter(city => city.id !== id);
     setListOfCitys(ciudadesFiltradas);
+    storeData(JSON.stringify(ciudadesFiltradas));
   };
 
   const storeData = async data => {
@@ -37,5 +39,15 @@ export const useCities = () => {
     }
   };
 
-  return {listOfCitys, setListOfCitys, loading, eliminarDelStorage, storeData};
+  return {
+    listOfCitys,
+    setListOfCitys,
+    loading,
+    eliminarDelStorage,
+    storeData,
+    buscar,
+    setBuscar,
+    singleCity,
+    setSingleCity,
+  };
 };
