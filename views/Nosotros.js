@@ -14,7 +14,7 @@ const Nosotros = ( {navigation, route} ) => {
         navigation.navigate('Inicio');
     };
 
-    const imagen = require("../assets/img/fondo2.png");
+    const imagen = require("../assets/img/fondo.png");
 
 
     return (  

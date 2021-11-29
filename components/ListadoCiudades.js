@@ -10,15 +10,13 @@ const ListadoCiudades = () => {
   const renderItem = ({item}) => <ItemList title={item.nombre} id={item.id} />;
   return (
     <>
-      <ScrollView>
-        <View>
-          <FlatList
-            data={listOfCitys}
-            renderItem={renderItem}
-            keyExtractor={item => item.id}
-          />
-        </View>
-      </ScrollView>
+      <View>
+        <FlatList
+          data={listOfCitys}
+          renderItem={renderItem}
+          keyExtractor={item => item.id}
+        />
+      </View>
     </>
   );
 };

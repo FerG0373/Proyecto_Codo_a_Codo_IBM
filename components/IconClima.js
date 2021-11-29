@@ -22,11 +22,16 @@ export default function IconClima({icon}){
             //nublado de noche
             imagenClimaActual=require("../assets/img/clima/300w/cloud-moon.png");
             break;
-        case "03d" || "03n":
+        case "03d":
+            //nublado
+        case "03n":
             //nublado
             imagenClimaActual=require("../assets/img/clima/300w/cloud.png");
-            break;          
-        case "04n" || "04d":
+            break;        
+        case "04n":
+            //muy nublado, nubes negras algunas (no hay imagen para ese)
+            
+        case "04d":
             //muy nublado, nubes negras algunas (no hay imagen para ese)
             imagenClimaActual=require("../assets/img/clima/300w/cloud.png");
             break;
@@ -55,13 +60,14 @@ export default function IconClima({icon}){
             imagenClimaActual=require("../assets/img/clima/300w/fog.png");
             break;
         default:
-            imagenClimaActual="sin descripcion";
+            imagenClimaActual = require("../assets/img/clima/300w/sun.png");
             break;
     };
 
     return (<Image
                 style={styles.imagenClima}
                 source={imagenClimaActual}
+                resizeMode="contain"
             />);
 };
 

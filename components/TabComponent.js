@@ -10,6 +10,7 @@ import {
 import {TabView, SceneMap} from 'react-native-tab-view';
 import CitiesMap from './CitiesMap';
 import ListadoCiudades from './ListadoCiudades';
+import globalStyles from '../styles/globalStyles';
 
 const TabComponent = () => {
   const [index, setIndex] = useState(0);
@@ -28,7 +29,7 @@ const TabComponent = () => {
 
   return (
     <>
-      <Text style={styles.textTitle}>Mis Ciudades</Text>
+      <Text style={[globalStyles.titulo, {textAlign:"center"}]/*, styles.textTitle*/}>Mis Ciudades</Text>
       <TabView
         navigationState={{index, routes}}
         renderScene={renderScene}
