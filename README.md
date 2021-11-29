@@ -47,23 +47,23 @@ Comando para instalar el componente:
 ```
 yarn add @react-native-async-storage/async-storage
 ```
-* [Picker]() - Libreria que se encarga de
+* [Picker](https://github.com/react-native-picker/picker) - Libreria que se encarga de el picker
 
 Comando para instalar el componente:
 ```
-yarn add
+yarn add @react-native-picker/picker
 ```
-* [React Native Elements]() - Libreria que se encarga de
+* [React Native Elements](https://reactnativeelements.com/docs/) - Es un framework UI
 
 Comando para instalar el componente:
 ```
-yarn add
+yarn add react-native-elements
 ```
-* [React Native Vector Icons]() - Libreria que se encarga de
+* [React Native Vector Icons](https://reactnativeelements.com/docs/) - Dependencia para que ande el React Native Elements
 
 Comando para instalar el componente:
 ```
-yarn add
+yarn add react-native-vector-icons
 ```
 * [react-native-maps]() - Libreria que se encarga de
 
@@ -77,13 +77,13 @@ Comando para instalar el componente:
 ```
 yarn add
 ```
-* [react-native-tab-view]() - Libreria que se encarga de
+* [react-native-tab-view](https://github.com/satya164/react-native-tab-view)
 
 Comando para instalar el componente:
 ```
-yarn add
+yarn add react-native-tab-view
 ```
-* [React Native Keyboard Aware Scroll View]() - Libreria que se encarga de
+* [React Native Keyboard Aware Scroll View](https://github.com/satya164/react-native-tab-view)
 
 Comando para instalar el componente:
 ```
@@ -98,20 +98,3 @@ _Aca van los comandos para clonar y luego ejecutar_
 * **Vanina Eliana Armida** - *Desarrollo* - [vaniar86](https://github.com/vaniar86)
 * **Fernando Daniel González** - *Desarrollo* - [FerG0373](https://github.com/FerG0373)
 * **Matias Nicolas Rivero** - *Desarrollo* - [Mathyz1](https://github.com/Mathyz1)
-
---------------------------------------
-# Plantilla que saque
-
-# Título
-## subtitulos
-### titulo 3
-
-_estos son parrafos en italic me parece._
-Estos son parrafos comunes.
-_iconos:_ 🚀 📋 🔧 ⚙️ 🔩 ⌨️ 📦 🛠️ 🖇️ 📖 📌 📄 🎁
-
-Esto es para **destacar palabras** en el readme.
-
- _Aca hace linkeable un parrafo de texto_
-
-Usamos [SemVer](http://semver.org/) para el versionado. Para todas las versiones disponibles, mira los [tags en este repositorio](https://github.com/tu/proyecto/tags).
